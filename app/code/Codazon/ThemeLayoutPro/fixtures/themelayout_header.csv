@@ -1,0 +1,682 @@
+identifier,title,is_active,layout_xml,variables,custom_variables,parent,custom_fields,content
+header-style-01,"Header Style 01",1,"<body>
+    <referenceContainer name=""header.container"" htmlClass=""page-header header-style-01 has-after"" />
+    <referenceContainer name=""header.panel"">
+        <container name=""header-panel-row"" htmlTag=""div"" htmlClass=""row"" after=""skip_to_content"">
+            <container name=""header-panel-left"" htmlTag=""div"" htmlClass=""col-sm-6 col-md-6 col-lg-6 header-panel-left"" />
+            <container name=""header-panel-middle"" htmlTag=""div"" htmlClass=""col-sm-8 col-md-6 col-lg-9 header-panel-middle"" />
+            <container name=""header-panel-right"" htmlTag=""div"" htmlClass=""col-sm-10 col-md-12 col-lg-9 header-panel-right"" />
+        </container>
+    </referenceContainer>
+    
+    <referenceBlock name=""top.links"">
+        <action method=""setData"">
+            <argument name=""name"" xsi:type=""string"">css_class</argument>
+            <argument name=""value"" xsi:type=""string"">header links visible-xs</argument>
+        </action>
+    </referenceBlock>
+
+    <move element=""utilities.toggle.linkslist"" destination=""header-panel-left"" before=""-"" />
+    <move element=""top.links.features"" destination=""header-panel-right"" />
+    <move element=""header-links-list"" destination=""utilities.sidebar.left"" />
+    <move element=""logo"" destination=""header-panel-left"" />
+    <move element=""mobi-cart-placeholder"" destination=""header-panel-middle"" />
+    <move element=""top.search"" destination=""header-panel-middle"" />
+    <move element=""minicart"" destination=""links.features.cart"" />
+
+    <move element=""catalog.topnav"" destination=""header-container-inner"" after=""-"" />
+    <move element=""store-menu-placeholder"" destination=""store.menu"" />
+</body>","{""header_background"":""#7fba00"",""header_background_file"":"""",""header_background_image_option"":""0 0"",""header_border"":""#507601"",""header_cart_background"":""transparent"",""header_drop_background"":""#ffffff"",""header_drop_text"":""#282828"",""header_hover_text"":""#f7df00"",""header_search_background"":""#ffffff"",""header_search_text"":""#CDCDCD"",""header_text"":""#ffffff"",""header_text_cart"":""#999999"",""header_top_background"":""#567d03"",""menu_background"":""#7fba00"",""menu_border"":""#e1e1e1"",""menu_drop_background"":""#ffffff"",""menu_drop_border"":""#e1e1e1"",""menu_drop_font"":""400 14px\/1.35 PT Sans, Helvetica Neue, Verdana, Arial, sans-serif"",""menu_drop_hover_text"":""#b0d235"",""menu_drop_text"":""#999999"",""menu_drop_text_title"":""#282828"",""menu_font"":""400 12px\/1.35 PT Sans, Helvetica Neue, Verdana, Arial, sans-serif"",""menu_hover_background"":""transparent"",""menu_hover_text"":""#f7df00"",""menu_text"":""#ffffff"",""vermenu_background"":""#fafafa"",""vermenu_border"":""#ebebeb"",""vermenu_font"":""500 12px\/1.35 PT Sans, Helvetica Neue, Verdana, Arial, sans-serif"",""vermenu_hover_background"":""#b0d235"",""vermenu_hover_text"":""#ffffff"",""vermenu_text"":""#444444"",""header_top_text"":""#ffffff"",""menu_drop_shadow"":""0 3px 3px #e1e1e1"",""header_search_button_text"":""#6a7d88"",""header_search_button_background"":""#ffffff"",""header_cart_text"":""#ffffff"",""header_shadow"":""0 1px 5px 3px #cccccc"",""header_cart_border"":"""",""header_cart_icon"":""#ffffff"",""header_cart_quality_background"":""#ff0054"",""header_drop_hover_text"":""#7fba00"",""header_drop_border_color"":""#dbdbdb"",""header_mobile_background"":""#7fba00"",""header_mobile_icon"":""#ffffff"",""header_mobile_search_text"":""#ffffff"",""header_mobile_search_border"":""#ffffff"",""header_mobile_search_input_background"":""#7fba00"",""header_mobile_search_input_text"":""#ffffff"",""header_mobile_search_input_border"":""#ffffff"",""header_mobile_sidebar_background"":""#7fba00"",""header_mobile_sidebar_color"":""#ffffff"",""header_mobile_sidebar_border"":""#b7eb46"",""menu_content_background"":""#7fba00"",""menu_content_color"":""#ffffff"",""menu_content_border"":""#689408"",""menu_title_background"":""#ffffff"",""menu_title_color"":""#689408"",""menu_title_border"":""#689408""}",,,"{""version"":""5ca595120436e""}","{""content_1"":"""",""content_2"":""""}"
+header-style-02,"Header Style 02",1,"<body>
+    <referenceContainer name=""header.container"" htmlClass=""page-header header-style-02"" />
+    <referenceContainer name=""header.panel"">
+        <container name=""header-panel-row"" htmlTag=""div"" htmlClass=""row relative_pos cdz-fix-left"" after=""skip_to_content"">
+            <container name=""header-panel-left"" htmlTag=""div"" htmlClass=""col-sm-12 col-md-6 header-panel-left"" />
+            <container name=""header-panel-middle"" htmlTag=""div"" htmlClass=""col-sm-24 col-md-12 header-panel-middle"" />
+            <container name=""header-panel-right"" htmlTag=""div"" htmlClass=""col-sm-12 col-md-6 header-panel-right"" />
+            <container name=""header-search-container"" htmlId=""header-search-container"" htmlTag=""div"" htmlClass=""col-sm-24 header-search-container"" />
+        </container>        
+    </referenceContainer>
+    
+    <referenceBlock name=""top.links"">
+        <action method=""setData"">
+            <argument name=""name"" xsi:type=""string"">css_class</argument>
+            <argument name=""value"" xsi:type=""string"">header links visible-xs</argument>
+        </action>
+    </referenceBlock>
+    
+    <referenceBlock name=""top.links.features"">
+        <block class=""Magento\Framework\View\Element\Template"" name=""links.features.search"" template=""Magento_Search::search-trigger.phtml""  before=""-"">
+            <arguments>
+                <argument name=""html_class"" xsi:type=""string"">search-link</argument>
+            </arguments>
+        </block>
+        <block class=""Magento\Framework\View\Element\Template"" name=""links.features.linkslist"" template=""Magento_Theme::html/custom-li.phtml""  after=""-"">
+            <arguments>
+                <argument name=""html_class"" xsi:type=""string"">linkslist-link</argument>
+            </arguments>
+        </block>
+    </referenceBlock>
+    <referenceBlock name=""utilities.toggle.linkslist"">
+        <action method=""setDirection"">
+            <argument name=""value"" xsi:type=""string"">right</argument>
+        </action>
+    </referenceBlock>
+        
+    <move element=""top.links.features"" destination=""header-panel-right"" />
+    <move element=""mobi-cart-placeholder"" destination=""header-search-container"" />
+    <move element=""top.search"" destination=""header-search-container"" />
+    <move element=""header-links-list"" destination=""utilities.sidebar.right"" />
+    <move element=""links.features.cart"" destination=""top.links.features"" after=""authorization-link-features"" before=""links.features.linkslist"" />
+    <move element=""utilities.toggle.linkslist"" destination=""links.features.linkslist"" />
+    
+    <move element=""logo"" destination=""header-panel-left"" />
+    <move element=""catalog.topnav"" destination=""header-panel-middle"" after=""-"" />
+    <move element=""store-menu-placeholder"" destination=""store.menu"" />
+    <move element=""minicart"" destination=""links.features.cart"" />
+    <referenceBlock name=""header-contact-link"" remove=""true"" />
+    <referenceBlock name=""wish-list-link-features"" remove=""true"" />
+</body>","{""header_background"":""#5c6ac3"",""header_background_file"":"""",""header_background_image_option"":""0 0"",""header_border"":""#282828"",""header_cart_background"":""transparent"",""header_cart_border"":"""",""header_cart_icon"":""#ffffff"",""header_cart_quality_background"":""#282828"",""header_cart_text"":""#ffffff"",""header_drop_background"":""#ffffff"",""header_drop_border_color"":""#dbdbdb"",""header_drop_hover_text"":""#5c6ac3"",""header_drop_text"":""#282828"",""header_hover_text"":""#ff0054"",""header_search_background"":""#5c6ac3"",""header_search_button_background"":""#5c6ac3"",""header_search_button_text"":""#ffffff"",""header_search_text"":""#ffffff"",""header_shadow"":""0 -8px 10px #6c14eb"",""header_text"":""#ffffff"",""header_text_cart"":""#999999"",""header_top_background"":""#5c6ac3"",""header_top_text"":""#ffffff"",""menu_background"":""#5c6ac3"",""menu_border"":""#e1e1e1"",""menu_drop_background"":""#ffffff"",""menu_drop_border"":""#e1e1e1"",""menu_drop_font"":""400 12px\/1.35 Rajdhani, Helvetica Neue, Verdana, Arial, sans-serif"",""menu_drop_hover_text"":""#fc7070"",""menu_drop_shadow"":""0 3px 3px #e1e1e1"",""menu_drop_text"":""#999999"",""menu_drop_text_title"":""#282828"",""menu_font"":""600 14px\/1.35 Rajdhani, Helvetica Neue, Verdana, Arial, sans-serif"",""menu_hover_background"":""#5c6ac3"",""menu_hover_text"":""#ff0054"",""menu_text"":""#ffffff"",""vermenu_background"":""#fafafa"",""vermenu_border"":""#ebebeb"",""vermenu_font"":""500 12px\/1.35 Rajdhani, Helvetica Neue, Verdana, Arial, sans-serif"",""vermenu_hover_background"":""#b0d235"",""vermenu_hover_text"":""#ffffff"",""vermenu_text"":""#444444"",""header_mobile_background"":""#5c6ac3"",""header_mobile_icon"":""#ffffff"",""header_mobile_search_text"":""#ffffff"",""header_mobile_search_border"":""#ffffff"",""header_mobile_search_input_background"":""#5c6ac3"",""header_mobile_search_input_text"":""#ffffff"",""header_mobile_search_input_border"":""#ffffff"",""header_mobile_sidebar_background"":"""",""header_mobile_sidebar_color"":"""",""header_mobile_sidebar_border"":"""",""menu_content_background"":""#ffffff"",""menu_content_color"":""#414b56"",""menu_content_border"":""#d1d1d1"",""menu_title_background"":""#e8e8e8"",""menu_title_color"":""#333333"",""menu_title_border"":""#dbdbdb""}",,,,"{""content_1"":"""",""content_2"":""""}"
+header-style-03,"Header Style 03",1,"<body>
+    <referenceContainer name=""header.container"" htmlClass=""page-header header-style-03"" />
+    <referenceContainer name=""header.panel"">
+        <container name=""header-panel-row"" htmlTag=""div"" htmlClass=""row"" after=""skip_to_content"">
+            <container name=""header-panel-left"" htmlTag=""div"" htmlClass=""col-sm-8 header-panel-left"" />
+            <container name=""header-panel-right"" htmlTag=""div"" htmlClass=""col-sm-16 header-panel-right"" />
+            <container name=""header-panel-bottom"" htmlId=""header-panel-bottom"" htmlTag=""div"" htmlClass=""col-sm-24 header-panel-bottom cdz-fix-left row"">
+                <container name=""header-menu-wrap"" htmlTag=""div"" htmlClass=""col-sm-14 col-md-18 header-menu-wrap"" />
+                <container name=""header-search-wrap"" htmlTag=""div"" htmlClass=""col-sm-10 col-md-6 header-search-wrap"" />
+            </container>
+        </container>        
+    </referenceContainer>
+    
+    <move element=""logo"" destination=""header-panel-left"" />
+    <move element=""top.links.features"" destination=""header-panel-right"" />
+    <move element=""minicart"" destination=""links.features.cart"" />
+    <move element=""links.features.cart"" destination=""top.links.features"" after=""authorization-link-features"" />
+    <move element=""store-language-currency"" destination=""top.links.features"" after=""wish-list-link-features"" />
+    <referenceBlock name=""header-contact-link"" remove=""true"" />
+    <referenceBlock name=""wish-list-link-features"">
+        <action method=""setTemplate"">
+            <argument name=""template"" xsi:type=""string"">Magento_Wishlist::link-style-02.phtml</argument>
+        </action>
+    </referenceBlock>
+    
+
+    <referenceBlock name=""top.links"">
+        <action method=""setData"">
+            <argument name=""name"" xsi:type=""string"">css_class</argument>
+            <argument name=""value"" xsi:type=""string"">header links visible-xs</argument>
+        </action>
+    </referenceBlock>
+    
+    <!--referenceBlock name=""utilities.sidebar.left"" remove=""true"" /-->
+    <move element=""catalog.topnav"" destination=""header-menu-wrap"" before=""-"" />
+    <move element=""mobi-cart-placeholder"" destination=""header-search-wrap"" after=""-"" />
+    <move element=""top.search"" destination=""header-search-wrap"" after=""-"" />
+    <move element=""store-menu-placeholder"" destination=""store.menu"" />
+</body>","{""header_background"":""#ffffff"",""header_background_file"":"""",""header_background_image_option"":""0 0"",""header_border"":""#ffffff"",""header_cart_background"":""transparent"",""header_cart_border"":"""",""header_cart_icon"":""#5c6ac3"",""header_cart_quality_background"":""#0d0d0d"",""header_cart_text"":""#ffffff"",""header_drop_background"":""#ffffff"",""header_drop_border_color"":""#dbdbdb"",""header_drop_hover_text"":""#5C6AC3"",""header_drop_text"":""#282828"",""header_hover_text"":""#5c6ac3"",""header_mobile_background"":""#5c6ac3"",""header_mobile_icon"":""#ffffff"",""header_mobile_search_border"":""#ffffff"",""header_mobile_search_input_background"":""#5c6ac3"",""header_mobile_search_input_border"":""#ffffff"",""header_mobile_search_input_text"":""#ffffff"",""header_mobile_search_text"":""#ffffff"",""header_search_background"":""#8389e1"",""header_search_button_background"":""transparent"",""header_search_button_text"":""#ffffff"",""header_search_text"":""#ffffff"",""header_shadow"":""0 -8px 10px #4f5eb0"",""header_text"":""#34343c"",""header_text_cart"":""#999999"",""header_top_background"":""#ffffff"",""header_top_text"":""#34343c"",""menu_background"":""#5c6ac3"",""menu_border"":""#525fb0"",""menu_drop_background"":""#ffffff"",""menu_drop_border"":""#e1e1e1"",""menu_drop_font"":""400 12px\/1.35 Rajdhani, Helvetica Neue, Verdana, Arial, sans-serif"",""menu_drop_hover_text"":""#fc7070"",""menu_drop_shadow"":""0 3px 3px #e1e1e1"",""menu_drop_text"":""#999999"",""menu_drop_text_title"":""#282828"",""menu_font"":""600 14px\/1.35 Rajdhani, Helvetica Neue, Verdana, Arial, sans-serif"",""menu_hover_background"":""transparent"",""menu_hover_text"":""#ffb21e"",""menu_text"":""#ffffff"",""vermenu_background"":""#ffffff"",""vermenu_border"":""#eaeaea"",""vermenu_font"":""400 14px\/1.35 Rajdhani, Helvetica Neue, Verdana, Arial, sans-serif"",""vermenu_hover_background"":""#eaeaea"",""vermenu_hover_text"":""#ff6a00"",""vermenu_text"":""#282828"",""header_mobile_sidebar_background"":""#ffffff"",""header_mobile_sidebar_color"":""#444444"",""header_mobile_sidebar_border"":""#d1d1d1"",""menu_content_background"":""#ffffff"",""menu_content_color"":""#444444"",""menu_content_border"":""#d1d1d1"",""menu_title_background"":""#e8e8e8"",""menu_title_color"":""#333333"",""menu_title_border"":""#dbdbdb""}",,,"{""version"":""5c8631d49f517""}","{""content_1"":"""",""content_2"":""""}"
+header-style-04,"Header Style 04",1,"<body>
+    <referenceContainer name=""header.container"" htmlClass=""page-header header-style-04"" />
+    <referenceContainer name=""header.panel"">
+        <container name=""header-panel-row"" htmlTag=""div"" htmlClass=""row relative_pos"" after=""skip_to_content"">
+            <container name=""header-panel-left"" htmlTag=""div"" htmlClass=""col-sm-6 header-panel-left"" />
+            <container name=""header-panel-middle"" htmlTag=""div"" htmlClass=""col-sm-12 header-panel-middle"" />
+            <container name=""header-panel-right"" htmlTag=""div"" htmlClass=""col-sm-6 header-panel-right"" />
+            <container name=""header-panel-bottom"" htmlId=""header-panel-bottom"" htmlTag=""div"" htmlClass=""col-sm-24 header-panel-bottom"" />
+        </container>
+        <container name=""header-panel-row-2"" htmlTag=""div"" htmlClass=""row"" after=""header-panel-row"">
+            <container name=""header-menu-container"" htmlId=""header-menu-container"" htmlTag=""div"" htmlClass=""col-sm-24 header-menu-container"" />
+        </container>
+    </referenceContainer>
+    
+    <move element=""logo"" destination=""header-panel-middle"" />
+    <move element=""authorization-link-features"" destination=""header-panel-left"" />
+    <move element=""minicart"" destination=""header-panel-right"" before=""-"" />
+
+    <referenceContainer name=""header-panel-right"">
+        <block class=""Magento\Framework\View\Element\Template"" name=""links.features.search"" template=""Magento_Search::search-trigger.phtml""  after=""-"">
+            <arguments>
+                <argument name=""html_class"" xsi:type=""string"">search-link</argument>
+                <argument name=""wrapper_tag"" xsi:type=""string"">div</argument>
+            </arguments>
+        </block>
+    </referenceContainer>
+    
+    <referenceContainer name=""header-panel-bottom"">
+        <container name=""header-search-container"" before=""-"" htmlId=""header-search-container"" htmlTag=""div"" htmlClass=""header-search-container"" />
+    </referenceContainer>
+            
+    <referenceBlock name=""top.links"">
+        <action method=""setData"">
+            <argument name=""name"" xsi:type=""string"">css_class</argument>
+            <argument name=""value"" xsi:type=""string"">header links visible-xs</argument>
+        </action>
+    </referenceBlock>
+    
+    <referenceBlock name=""utilities.sidebar.left"">
+        <action method=""setData"">
+            <argument name=""name"" xsi:type=""string"">required_blocks</argument>
+            <argument name=""value"" xsi:type=""array"">
+                <item name=""getHeaderWishlistStyle"" xsi:type=""string"">wishlist-sidebar</item>
+                <item name=""getAccountPanelStyle"" xsi:type=""string"">utilities.content</item>
+            </argument>
+        </action>
+    </referenceBlock>
+    <referenceBlock name=""utilities.sidebar.right"">
+        <action method=""setData"">
+            <argument name=""name"" xsi:type=""string"">required_blocks</argument>
+            <argument name=""value"" xsi:type=""array"">
+                <item name=""getMiniCartStyle"" xsi:type=""string"">minicart-sidebar</item>
+            </argument>
+        </action>
+    </referenceBlock>
+    <referenceBlock name=""authorization-link-features"">
+        <action method=""addData"">
+            <argument name=""value"" xsi:type=""array"">
+                <item name=""direction"" xsi:type=""string"">left</item>
+                <item name=""section"" xsi:type=""string"">utilities-main</item>
+            </argument>
+        </action>
+    </referenceBlock>
+    
+    <move element=""catalog.topnav"" destination=""header-menu-container"" />
+    <move element=""mobi-cart-placeholder"" destination=""header-search-container"" />
+    <move element=""top.search"" destination=""header-search-container"" after=""-"" />
+    <move element=""store-menu-placeholder"" destination=""store.menu"" />
+</body>","{""header_background"":""#e7e7e7"",""header_background_file"":"""",""header_background_image_option"":""0 0 no-repeat fixed"",""header_border"":""#c2c2c2"",""header_cart_background"":""#5c6ac3"",""header_drop_background"":""#ffffff"",""header_drop_text"":""#282828"",""header_hover_text"":""#5c6ac3"",""header_search_background"":""#e7e7e7"",""header_search_text"":""#69696B"",""header_text"":""#999999"",""header_text_cart"":""#999999"",""header_top_background"":""#ffffff"",""menu_background"":""#ffffff"",""menu_border"":""#f9f9f9"",""menu_drop_background"":""#ffffff"",""menu_drop_border"":""#dfdfdf"",""menu_drop_font"":""400 12px\/1.35 Rajdhadi, Helvetica Neue, Verdana, Arial, sans-serif"",""menu_drop_hover_text"":""#fc7070"",""menu_drop_text"":""#282828"",""menu_drop_text_title"":""#282828"",""menu_font"":""500 14px\/1.35 Rajdhadi, Helvetica Neue, Verdana, Arial, sans-serif"",""menu_hover_background"":""#ffffff"",""menu_hover_text"":""#34343c"",""menu_text"":""#34343c"",""vermenu_background"":""#fafafa"",""vermenu_border"":""#ebebeb"",""vermenu_font"":""500 12px\/1.35 Rajdhadi, Helvetica Neue, Verdana, Arial, sans-serif"",""vermenu_hover_background"":""#b0d235"",""vermenu_hover_text"":""#ffffff"",""vermenu_text"":""#444444"",""header_shadow"":"""",""menu_drop_shadow"":"""",""header_top_text"":""#69696b"",""header_cart_quality_background"":""#2f0270"",""header_cart_text"":""#ffffff"",""header_cart_icon"":""#ffffff"",""header_cart_border"":""#5c6ac3"",""header_search_button_text"":""#69696B"",""header_search_button_background"":""transparent"",""header_drop_hover_text"":""#5c6ac3"",""header_drop_border_color"":""#dbdbdb"",""header_mobile_background"":""#5c6ac3"",""header_mobile_icon"":""#ffffff"",""header_mobile_search_text"":""#ffffff"",""header_mobile_search_border"":""#ffffff"",""header_mobile_search_input_background"":""#5c6ac3"",""header_mobile_search_input_text"":""#ffffff"",""header_mobile_search_input_border"":""#ffffff"",""header_mobile_sidebar_background"":"""",""header_mobile_sidebar_color"":"""",""header_mobile_sidebar_border"":"""",""menu_content_background"":""#ffffff"",""menu_content_color"":""#414b56"",""menu_content_border"":""#d1d1d1"",""menu_title_background"":""#e8e8e8"",""menu_title_color"":""#333333"",""menu_title_border"":""#dbdbdb""}",,,,"{""content_1"":"""",""content_2"":""""}"
+header-style-05,"Header Style 05",1,"<body>
+    <referenceContainer name=""header.container"" htmlClass=""page-header header-style-05"" />
+    <referenceContainer name=""header.panel"">
+        <container name=""header-panel-row"" htmlTag=""div"" htmlClass=""header-wrap"" after=""skip_to_content"">
+            <container name=""header-panel-left"" htmlTag=""div"" htmlClass=""col-sm-10 header-panel-left"" />
+            <container name=""header-panel-right"" htmlTag=""div"" htmlClass=""col-sm-14 header-panel-right"" />
+            <container name=""header-panel-bottom"" htmlId=""header-panel-bottom"" htmlTag=""div"" htmlClass=""header-panel-bottom cdz-fix-left col-sm-24"">
+<container name=""header-bottom"" htmlTag=""div"" htmlClass=""row"" >
+                <container name=""header-menu-wrap"" htmlTag=""div"" htmlClass=""col-sm-16 col-md-18 header-menu-wrap"" />
+                <container name=""header-search-wrap"" htmlTag=""div"" htmlClass=""col-md-6 col-sm-8 header-search-wrap"" />
+            </container>
+ </container>
+</container>         
+    </referenceContainer>
+    
+    <move element=""utilities.toggle.linkslist"" destination=""header-panel-left"" before=""-"" />
+    <move element=""header-links-list"" destination=""utilities.sidebar.left"" />
+    <move element=""logo"" destination=""header-panel-left"" />
+    <move element=""top.links.features"" destination=""header-panel-right"" />
+    <move element=""minicart"" destination=""links.features.cart"" />
+    <move element=""links.features.cart"" destination=""top.links.features"" before=""-"" />
+    
+    <referenceBlock name=""header-contact-link"" remove=""true"" />
+
+    <referenceBlock name=""top.links"">
+        <action method=""setData"">
+            <argument name=""name"" xsi:type=""string"">css_class</argument>
+            <argument name=""value"" xsi:type=""string"">header links visible-xs</argument>
+        </action>
+    </referenceBlock>
+    
+    
+    <move element=""catalog.topnav"" destination=""header-menu-wrap"" before=""-"" />
+    <move element=""mobi-cart-placeholder"" destination=""header-search-wrap"" />
+    <move element=""top.search"" destination=""header-search-wrap"" after=""-"" />
+    <move element=""store-menu-placeholder"" destination=""store.menu"" />
+</body>","{""header_background"":""#f6f7f9"",""header_background_file"":"""",""header_background_image_option"":""0 0"",""header_border"":""#f0f2f7"",""header_cart_background"":""transparent"",""header_cart_border"":"""",""header_cart_icon"":""#6772e5"",""header_cart_quality_background"":""#e3e8f0"",""header_cart_text"":""#6772e5"",""header_drop_background"":""#ffffff"",""header_drop_border_color"":""#dbdbdb"",""header_drop_hover_text"":""#6772e5"",""header_drop_text"":""#282828"",""header_hover_text"":""#6772e5"",""header_mobile_background"":""#ffffff"",""header_mobile_icon"":""#36405e"",""header_mobile_search_border"":""#ffffff"",""header_mobile_search_input_background"":""#f6f7f9"",""header_mobile_search_input_border"":""#36405e"",""header_mobile_search_input_text"":""#36405e"",""header_mobile_search_text"":""#ffffff"",""header_search_background"":""#ffffff"",""header_search_button_background"":""transparent"",""header_search_button_text"":""#36405e"",""header_search_text"":""#a1a7bd"",""header_shadow"":""rgba(0, 0, 0, 0.08) 0px 4px 34px"",""header_text"":""#a8aeba"",""header_text_cart"":""#999999"",""header_top_background"":""#ffffff"",""header_top_text"":""#34343c"",""menu_background"":""#ffffff"",""menu_border"":""#ffffff"",""menu_drop_background"":""#ffffff"",""menu_drop_border"":""#e1e1e1"",""menu_drop_font"":""400 12px\/1.35 Rajdhani, Helvetica Neue, Verdana, Arial, sans-serif"",""menu_drop_hover_text"":""#6772e5"",""menu_drop_shadow"":""0 3px 3px #e1e1e1"",""menu_drop_text"":""#999999"",""menu_drop_text_title"":""#282828"",""menu_font"":""600 12px\/1.35 Rajdhani, Helvetica Neue, Verdana, Arial, sans-serif"",""menu_hover_background"":"""",""menu_hover_text"":""#ffb21e"",""menu_text"":""#343e5c"",""vermenu_background"":""#fafafa"",""vermenu_border"":""#ebebeb"",""vermenu_font"":""500 12px\/1.35 Rajdhani, Helvetica Neue, Verdana, Arial, sans-serif"",""vermenu_hover_background"":""#6772e5"",""vermenu_hover_text"":""#ffffff"",""vermenu_text"":""#444444"",""header_mobile_sidebar_background"":"""",""header_mobile_sidebar_color"":"""",""header_mobile_sidebar_border"":"""",""menu_content_background"":""#36405e"",""menu_content_color"":""#ffffff"",""menu_content_border"":""#515e85"",""menu_title_background"":""#f6f7f9"",""menu_title_color"":""#36405e"",""menu_title_border"":""#515e85""}",,,,"{""content_1"":"""",""content_2"":""""}"
+header-style-06,"Header Style 06",1,"<body>
+    <referenceContainer name=""header.container"" htmlClass=""page-header header-style-06"" />
+    <referenceContainer name=""header-container-inner"">
+        <container name=""header-top"" htmlId=""header-top"" before=""-"" htmlTag=""div"" htmlClass=""header-panel-top container"" />
+        <container name=""header-bottom"" htmlId=""header-bottom"" after=""-"" htmlTag=""div"" htmlClass=""header-panel-bottom"" />
+    </referenceContainer>
+    <referenceContainer name=""header.panel"">
+        <container name=""header-panel-row"" htmlTag=""div"" htmlClass=""header-panel-row row"" after=""skip_to_content"">
+            <container name=""header-panel-left"" htmlTag=""div"" htmlClass=""col-sm-7 col-md-10 header-panel-left"" />
+            <container name=""header-panel-right"" htmlTag=""div"" htmlClass=""col-sm-17 col-md-14 header-panel-right"">
+                <container name=""hp-right-top"" htmlTag=""div"" htmlClass=""hp-right-top"" />
+                <container name=""hp-right-bottom"" htmlTag=""div"" htmlClass=""hp-right-bottom"" />
+            </container>
+        </container>
+    </referenceContainer>
+    <move element=""header.panel"" destination=""header-top"" />
+    
+    <move element=""mobi-cart-placeholder"" destination=""hp-right-bottom"" />
+    <move element=""top.search"" destination=""hp-right-bottom"" before=""-"" />
+    <move element=""minicart"" destination=""hp-right-bottom"" after=""-"" />
+    <referenceContainer name=""hp-right-bottom"">
+        <container name=""hprb-links"" htmlTag=""ul"" htmlClass=""hprb-links"" after=""top.search"" />
+    </referenceContainer>
+    <move element=""wish-list-link-features"" destination=""hprb-links"" />
+    <move element=""logo"" destination=""header-panel-left"" />
+    <move element=""top.links.features"" destination=""hp-right-top"" before=""utilities.toggle.linkslist"" />
+    <!--move element=""utilities.toggle.linkslist"" destination=""hp-right-top"" after=""-"" /-->
+    
+    
+    <referenceContainer name=""hp-right-top"">
+        <block class=""Magento\Store\Block\Switcher"" name=""footer-switch-language"" template=""Magento_Store::switch/languages-style-02.phtml"" />
+        <block class=""Magento\Directory\Block\Currency"" name=""footer-switch-currency"" template=""Magento_Directory::currency-style-02.phtml"" />
+    </referenceContainer>
+    <referenceBlock name=""utilities.sidebar.right"">
+        <action method=""setData"">
+            <argument name=""name"" xsi:type=""string"">required_blocks</argument>
+            <argument name=""value"" xsi:type=""array"">
+                <item name=""getAccountPanelStyle"" xsi:type=""string"">utilities.content</item>
+                <item name=""getHeaderWishlistStyle"" xsi:type=""string"">wishlist-sidebar</item>
+                <item name=""getMiniCartStyle"" xsi:type=""string"">minicart-sidebar</item>
+                <!--item name=""getLeftMenuStyle"" xsi:type=""string"">header-links-list</item-->
+            </argument>
+        </action>
+    </referenceBlock>
+    <!--referenceBlock name=""utilities.sidebar.left"">
+        <action method=""setData"">
+            <argument name=""name"" xsi:type=""string"">required_blocks</argument>
+            <argument name=""value"" xsi:type=""boolean"">0</argument>
+        </action>
+    </referenceBlock>
+    <referenceBlock name=""utilities.toggle.linkslist"">
+        <action method=""setData"">
+            <argument name=""name"" xsi:type=""string"">direction</argument>
+            <argument name=""value"" xsi:type=""string"">right</argument>
+        </action>
+    </referenceBlock-->
+    <referenceBlock name=""header-contact-link"" remove=""true"" />
+    <referenceBlock name=""top.links"">
+        <action method=""setData"">
+            <argument name=""name"" xsi:type=""string"">css_class</argument>
+            <argument name=""value"" xsi:type=""string"">header links visible-xs</argument>
+        </action>
+    </referenceBlock>
+    <move element=""catalog.topnav"" destination=""header-bottom"" before=""-"" />
+
+    <move element=""store-menu-placeholder"" destination=""store.menu"" />
+</body>","{""header_background"":""#ffffff"",""header_background_file"":"""",""header_background_image_option"":""0 0"",""header_border"":""#e1e1e1"",""header_cart_background"":""transparent"",""header_cart_border"":"""",""header_cart_icon"":""#282828"",""header_cart_quality_background"":""#f96668"",""header_cart_text"":""#282828"",""header_drop_background"":""#ffffff"",""header_drop_border_color"":""#dbdbdb"",""header_drop_hover_text"":""#a07653"",""header_drop_text"":""#282828"",""header_hover_text"":""#a07653"",""header_mobile_background"":""#ffffff"",""header_mobile_icon"":""#282828"",""header_mobile_search_border"":""#ffffff"",""header_mobile_search_input_background"":""#ffffff"",""header_mobile_search_input_border"":""#000000"",""header_mobile_search_input_text"":""#282828"",""header_mobile_search_text"":""#ffffff"",""header_search_background"":""#ffffff"",""header_search_button_background"":""#ffffff"",""header_search_button_text"":""#282828"",""header_search_text"":""#282828"",""header_shadow"":"""",""header_text"":""#282828"",""header_text_cart"":""#999999"",""header_top_background"":""#ffffff"",""header_top_text"":""#282828"",""menu_background"":""#000000"",""menu_border"":""#000000"",""menu_drop_background"":""#ffffff"",""menu_drop_border"":""#e1e1e1"",""menu_drop_font"":""400 12px\/1.35 Rajdhani, Helvetica Neue, Verdana, Arial, sans-serif"",""menu_drop_hover_text"":""#a07653"",""menu_drop_shadow"":""0 3px 3px #e1e1e1"",""menu_drop_text"":""#999999"",""menu_drop_text_title"":""#282828"",""menu_font"":""500 14px\/1.35 Montserrat, Helvetica Neue, Verdana, Arial, sans-serif"",""menu_hover_background"":""#000000"",""menu_hover_text"":""#a07653"",""menu_text"":""#ffffff"",""vermenu_background"":""#fafafa"",""vermenu_border"":""#ebebeb"",""vermenu_font"":""500 12px\/1.35 Rajdhani, Helvetica Neue, Verdana, Arial, sans-serif"",""vermenu_hover_background"":""#e6c1a3"",""vermenu_hover_text"":""#555555"",""vermenu_text"":""#444444"",""header_mobile_sidebar_background"":"""",""header_mobile_sidebar_color"":"""",""header_mobile_sidebar_border"":"""",""menu_content_background"":""#353535"",""menu_content_color"":""#ffffff"",""menu_content_border"":""#1f1f1f"",""menu_title_background"":""#ffffff"",""menu_title_color"":""#353535"",""menu_title_border"":""#1f1f1f""}",,,"{""version"":""5c888f91d94b2""}","{""content_1"":"""",""content_2"":""""}"
+header-style-07,"Header Style 07",1,"<body>
+    <referenceContainer name=""header.container"" htmlClass=""page-header header-style-07"" />
+    <referenceContainer name=""header.panel"">
+        <container name=""header-panel-row"" htmlTag=""div"" htmlClass=""row"" after=""skip_to_content"">
+            <container name=""header-panel-left"" htmlTag=""div"" htmlClass=""col-sm-8 header-panel-left"" />
+            <container name=""header-panel-right"" htmlTag=""div"" htmlClass=""col-sm-16 header-panel-right"" />
+            <container name=""header-panel-bottom"" htmlId=""header-panel-bottom"" htmlTag=""div"" htmlClass=""col-sm-24 header-panel-bottom cdz-fix-left"">
+				<container htmlClass=""row"" htmlTag=""div"">
+					<container name=""header-vertical-menu-wrap"" htmlTag=""div"" htmlClass=""col-sm-6 header-vertical-menu-wrap"" label=""Header Vertical Menu"" />
+					<container name=""header-menu-wrap"" htmlTag=""div"" htmlClass=""col-sm-12 header-menu-wrap"" />
+					<container name=""header-search-wrap"" htmlTag=""div"" htmlClass=""col-sm-6 header-search-wrap"" />
+				</container>
+            </container>
+        </container>        
+    </referenceContainer>
+    
+    
+    <move element=""logo"" destination=""header-panel-left"" />
+    <move element=""top.links.features"" destination=""header-panel-right"" />
+    <move element=""minicart"" destination=""links.features.cart"" />
+    <move element=""links.features.cart"" destination=""top.links.features"" after=""authorization-link-features"" />
+    <move element=""store-language-currency"" destination=""top.links.features"" after=""wish-list-link-features"" />
+    <move element=""store-vertical-menu"" destination=""header-vertical-menu-wrap"" />
+    <referenceBlock name=""header-contact-link"" remove=""true"" />
+    <referenceBlock name=""wish-list-link-features"">
+        <action method=""setTemplate"">
+            <argument name=""template"" xsi:type=""string"">Magento_Wishlist::link-style-02.phtml</argument>
+        </action>
+    </referenceBlock>
+    
+
+    <referenceBlock name=""top.links"">
+        <action method=""setData"">
+            <argument name=""name"" xsi:type=""string"">css_class</argument>
+            <argument name=""value"" xsi:type=""string"">header links visible-xs</argument>
+        </action>
+    </referenceBlock>
+    
+    <!--referenceBlock name=""utilities.sidebar.left"" remove=""true"" /-->
+    <move element=""catalog.topnav"" destination=""header-menu-wrap"" before=""-"" />
+    <move element=""mobi-cart-placeholder"" destination=""header-search-wrap"" />
+    <move element=""top.search"" destination=""header-search-wrap"" after=""-"" />
+    <move element=""store-menu-placeholder"" destination=""store.menu"" />
+</body>","{""header_background"":""#ffffff"",""header_background_file"":"""",""header_background_image_option"":""0 0"",""header_border"":""#ffffff"",""header_cart_background"":""transparent"",""header_cart_border"":"""",""header_cart_icon"":""#ff6a00"",""header_cart_quality_background"":""#0d0d0d"",""header_cart_text"":""#ffffff"",""header_drop_background"":""#ffffff"",""header_drop_border_color"":""#dbdbdb"",""header_drop_hover_text"":""#ff6a00"",""header_drop_text"":""#282828"",""header_hover_text"":""#ff6a00"",""header_mobile_background"":""#ffffff"",""header_mobile_icon"":""#ff6a00"",""header_mobile_search_border"":""#ffffff"",""header_mobile_search_input_background"":""#ffffff"",""header_mobile_search_input_border"":""#ff6a00"",""header_mobile_search_input_text"":""#ff6a00"",""header_mobile_search_text"":""#ffffff"",""header_search_background"":""#ff8833"",""header_search_button_background"":""transparent"",""header_search_button_text"":""#ffffff"",""header_search_text"":""#ffffff"",""header_shadow"":"""",""header_text"":""#34343c"",""header_text_cart"":""#999999"",""header_top_background"":""#ffffff"",""header_top_text"":""#34343c"",""menu_background"":""#ff6a00"",""menu_border"":""#e35300"",""menu_drop_background"":""#ffffff"",""menu_drop_border"":""#e1e1e1"",""menu_drop_font"":""400 13px\/1.35 Rajdhani, Helvetica Neue, Verdana, Arial, sans-serif"",""menu_drop_hover_text"":""#ff6a00"",""menu_drop_shadow"":""0 3px 3px #e1e1e1"",""menu_drop_text"":""#999999"",""menu_drop_text_title"":""#282828"",""menu_font"":""600 14px\/1.35 Rajdhani, Helvetica Neue, Verdana, Arial, sans-serif"",""menu_hover_background"":""#f06400"",""menu_hover_text"":""#ffffff"",""menu_text"":""#ffffff"",""vermenu_background"":""#ffffff"",""vermenu_border"":""#eaeaea"",""vermenu_font"":""500 13px\/1.35 Rajdhani, Helvetica Neue, Verdana, Arial, sans-serif"",""vermenu_hover_background"":""#eaeaea"",""vermenu_hover_text"":""#ff6a00"",""vermenu_text"":""#282828"",""header_mobile_sidebar_background"":"""",""header_mobile_sidebar_color"":"""",""header_mobile_sidebar_border"":"""",""menu_content_background"":""#ffffff"",""menu_content_color"":""#444444"",""menu_content_border"":""#d1d1d1"",""menu_title_background"":""#e8e8e8"",""menu_title_color"":""#333333"",""menu_title_border"":""#dbdbdb""}",,header-style-03,,"{""content_1"":"""",""content_2"":""""}"
+header-style-08,"Header Style 08",1,"<body>
+    <referenceContainer name=""header.container"" htmlClass=""page-header header-style-08"">
+        <container name=""header-panel-top"" htmlTag=""div"" htmlClass=""header-top"" before=""-"">
+           <block name=""header-extra-text"" class=""Codazon\ThemeLayoutPro\Block\Header"" template=""Codazon_ThemeLayoutPro::layout/header-content.phtml"" />
+        </container>
+    </referenceContainer>
+    <referenceContainer name=""header.panel"">
+        <container name=""header-panel-row"" htmlTag=""div"" htmlClass=""row cdz-fix-left"" after=""skip_to_content"">
+            <container name=""header-panel-left"" htmlTag=""div"" htmlClass=""col-sm-12 col-md-5 header-panel-left"" />
+            <container name=""header-panel-middle"" htmlTag=""div"" htmlClass=""col-sm-24 col-md-14 header-panel-middle"" />
+            <container name=""header-panel-right"" htmlTag=""div"" htmlClass=""col-sm-12 col-md-5 header-panel-right"" />
+            <container name=""header-search-container"" htmlId=""header-search-container"" htmlTag=""div"" htmlClass=""col-sm-24 header-search-container"" />
+        </container>
+    </referenceContainer>
+    
+    <referenceBlock name=""top.links"">
+        <action method=""setData"">
+            <argument name=""name"" xsi:type=""string"">css_class</argument>
+            <argument name=""value"" xsi:type=""string"">header links visible-xs</argument>
+        </action>
+    </referenceBlock>
+    
+    <referenceBlock name=""top.links.features"">
+        <block class=""Magento\Framework\View\Element\Template"" name=""links.features.search"" template=""Magento_Search::search-trigger.phtml""  before=""-"">
+            <arguments>
+                <argument name=""html_class"" xsi:type=""string"">search-link</argument>
+            </arguments>
+        </block>
+        <block class=""Magento\Framework\View\Element\Template"" name=""links.features.linkslist"" template=""Magento_Theme::html/custom-li.phtml""  after=""-"">
+            <arguments>
+                <argument name=""html_class"" xsi:type=""string"">linkslist-link</argument>
+            </arguments>
+        </block>
+    </referenceBlock>
+    <referenceBlock name=""utilities.toggle.linkslist"">
+        <action method=""setDirection"">
+            <argument name=""value"" xsi:type=""string"">right</argument>
+        </action>
+    </referenceBlock>
+    
+    <move element=""header-store-info"" destination=""header-panel-top"" />    
+    <move element=""top.links.features"" destination=""header-panel-right"" />
+    <move element=""mobi-cart-placeholder"" destination=""header-search-container"" />
+    <move element=""top.search"" destination=""header-search-container"" />
+    <move element=""header-links-list"" destination=""utilities.sidebar.right"" />
+    <move element=""links.features.cart"" destination=""top.links.features"" after=""authorization-link-features"" before=""links.features.linkslist"" />
+    <move element=""utilities.toggle.linkslist"" destination=""links.features.linkslist"" />
+    
+    <move element=""logo"" destination=""header-panel-left"" />
+    <move element=""catalog.topnav"" destination=""header-panel-middle"" after=""-"" />
+    <move element=""store-menu-placeholder"" destination=""store.menu"" />
+    <move element=""minicart"" destination=""links.features.cart"" />
+    <referenceBlock name=""header-contact-link"" remove=""true"" />
+    <referenceBlock name=""wish-list-link-features"" remove=""true"" />
+</body>","{""header_background"":""#ffffff"",""header_background_file"":"""",""header_background_image_option"":""0 0"",""header_border"":""#282828"",""header_cart_background"":""transparent"",""header_cart_border"":"""",""header_cart_icon"":""#222e46"",""header_cart_quality_background"":""#282828"",""header_cart_text"":""#222e46"",""header_drop_background"":""#ffffff"",""header_drop_border_color"":""#dbdbdb"",""header_drop_hover_text"":""#f44336"",""header_drop_text"":""#282828"",""header_hover_text"":""#f44336"",""header_mobile_background"":""#f44336"",""header_mobile_icon"":""#ffffff"",""header_mobile_search_border"":""#ffffff"",""header_mobile_search_input_background"":""#f44336"",""header_mobile_search_input_border"":""#ffffff"",""header_mobile_search_input_text"":""#ffffff"",""header_mobile_search_text"":""#ffffff"",""header_search_background"":""#ffffff"",""header_search_button_background"":""#ffffff"",""header_search_button_text"":""#222e46"",""header_search_text"":""#222e46"",""header_shadow"":"""",""header_text"":""#222e46"",""header_text_cart"":""#999999"",""header_top_background"":""#000000"",""header_top_text"":""#ffffff"",""menu_background"":""#ffffff"",""menu_border"":""#e1e1e1"",""menu_drop_background"":""#ffffff"",""menu_drop_border"":""#e1e1e1"",""menu_drop_font"":""500 12px\/1.35 Roboto, Helvetica Neue, Verdana, Arial, sans-serif"",""menu_drop_hover_text"":""#fc7070"",""menu_drop_shadow"":""0 3px 3px #e1e1e1"",""menu_drop_text"":""#282828"",""menu_drop_text_title"":""#282828"",""menu_font"":""700 15px\/1.35 Roboto, Helvetica Neue, Verdana, Arial, sans-serif"",""menu_hover_background"":""#ffffff"",""menu_hover_text"":""#f44336"",""menu_text"":""#222e46"",""vermenu_background"":""#fafafa"",""vermenu_border"":""#ebebeb"",""vermenu_font"":""500 12px\/1.35 Roboto, Helvetica Neue, Verdana, Arial, sans-serif"",""vermenu_hover_background"":""#f44336"",""vermenu_hover_text"":""#ffffff"",""vermenu_text"":""#444444"",""header_mobile_sidebar_background"":"""",""header_mobile_sidebar_color"":"""",""header_mobile_sidebar_border"":"""",""menu_content_background"":""#353535"",""menu_content_color"":""#ffffff"",""menu_content_border"":""#1f1f1f"",""menu_title_background"":""#ffffff"",""menu_title_color"":""#353535"",""menu_title_border"":""#1f1f1f""}",,header-style-02,"{""version"":""5c8632053c321""}","{""content_1"":""<div class=\"store-info-top container\">\r\n<div class=\"row\">\r\n<div class=\"col-sm-12 col-left\">\r\n<div class=\"store-contact\"><a class=\"store-tel\" href=\"tel:0123456789\"> (0123) 456 xxx<\/a> <a class=\"store-mail\" href=\"mailto:codazon@sample.com\"> codazon@sample.com<\/a><\/div>\r\n<\/div>\r\n<div class=\"col-sm-12 col-right\">\r\n<div class=\"social-wrap f-right\"><a href=\"#\"><span class=\"fa fa-pinterest-p\"><span class=\"hidden\">pinterest<\/span><\/span><\/a> <a href=\"#\"><span class=\"fa fa-vimeo\"><span class=\"hidden\">vimeo<\/span><\/span><\/a> <a href=\"#\"><span class=\"fa fa-twitter\"><span class=\"hidden\">twitter<\/span><\/span><\/a> <a href=\"#\"><span class=\"fa fa-facebook\"><span class=\"hidden\">facebook<\/span><\/span><\/a> <a href=\"#\"><span class=\"fa fa-google-plus\"><span class=\"hidden\">google-plus<\/span><\/span><\/a><\/div>\r\n<\/div>\r\n<\/div>\r\n<\/div>"",""content_2"":""""}"
+header-style-09,"Header Style 09",1,"<body>
+    <referenceContainer name=""header.container"" htmlClass=""page-header header-style-09"">
+        <container name=""header-panel-top"" htmlTag=""div"" htmlClass=""header-top"" before=""-"">
+            <block name=""header-extra-text"" class=""Codazon\ThemeLayoutPro\Block\Header"" template=""Codazon_ThemeLayoutPro::layout/header-content.phtml"" />
+        </container>
+    </referenceContainer>
+    <referenceContainer name=""header.panel"">
+        <container name=""header-panel-row"" htmlTag=""div"" htmlClass=""row cdz-fix-left"" after=""skip_to_content"">
+            <container name=""header-panel-left"" htmlTag=""div"" htmlClass=""col-sm-12 col-md-5 header-panel-left"" />
+            <container name=""header-panel-middle"" htmlTag=""div"" htmlClass=""col-sm-24 col-md-14 header-panel-middle"" />
+            <container name=""header-panel-right"" htmlTag=""div"" htmlClass=""col-sm-12 col-md-5 header-panel-right"" />
+            <container name=""header-search-container"" htmlId=""header-search-container"" htmlTag=""div"" htmlClass=""col-sm-24 header-search-container"" />
+        </container>
+    </referenceContainer>
+    
+    <referenceBlock name=""top.links"">
+        <action method=""setData"">
+            <argument name=""name"" xsi:type=""string"">css_class</argument>
+            <argument name=""value"" xsi:type=""string"">header links visible-xs</argument>
+        </action>
+    </referenceBlock>
+    
+    <referenceBlock name=""top.links.features"">
+        <block class=""Magento\Framework\View\Element\Template"" name=""links.features.search"" template=""Magento_Search::search-trigger.phtml""  before=""-"">
+            <arguments>
+                <argument name=""html_class"" xsi:type=""string"">search-link</argument>
+            </arguments>
+        </block>
+        <block class=""Magento\Framework\View\Element\Template"" name=""links.features.linkslist"" template=""Magento_Theme::html/custom-li.phtml""  after=""-"">
+            <arguments>
+                <argument name=""html_class"" xsi:type=""string"">linkslist-link</argument>
+            </arguments>
+        </block>
+    </referenceBlock>
+    <referenceBlock name=""utilities.toggle.linkslist"">
+        <action method=""setDirection"">
+            <argument name=""value"" xsi:type=""string"">right</argument>
+        </action>
+    </referenceBlock>
+    
+    <move element=""header-store-info"" destination=""header-panel-top"" />    
+    <move element=""top.links.features"" destination=""header-panel-right"" />
+    <move element=""mobi-cart-placeholder"" destination=""header-search-container"" />
+    <move element=""top.search"" destination=""header-search-container"" />
+    <move element=""header-links-list"" destination=""utilities.sidebar.right"" />
+    <move element=""links.features.cart"" destination=""top.links.features"" after=""authorization-link-features"" before=""links.features.linkslist"" />
+    <move element=""utilities.toggle.linkslist"" destination=""links.features.linkslist"" />
+    
+    <move element=""logo"" destination=""header-panel-left"" />
+    <move element=""catalog.topnav"" destination=""header-panel-middle"" after=""-"" />
+    <move element=""store-menu-placeholder"" destination=""store.menu"" />
+    <move element=""minicart"" destination=""links.features.cart"" />
+    <referenceBlock name=""header-contact-link"" remove=""true"" />
+    <referenceBlock name=""wish-list-link-features"" remove=""true"" />
+	
+</body>","{""header_background"":""#ffffff"",""header_background_file"":"""",""header_background_image_option"":""0 0"",""header_border"":""#282828"",""header_cart_background"":""transparent"",""header_cart_border"":"""",""header_cart_icon"":""#222e46"",""header_cart_quality_background"":""#282828"",""header_cart_text"":""#222e46"",""header_drop_background"":""#ffffff"",""header_drop_border_color"":""#dbdbdb"",""header_drop_hover_text"":""#009688"",""header_drop_text"":""#282828"",""header_hover_text"":""#009688"",""header_mobile_background"":""#009688"",""header_mobile_icon"":""#ffffff"",""header_mobile_search_border"":""#ffffff"",""header_mobile_search_input_background"":""#009688"",""header_mobile_search_input_border"":""#ffffff"",""header_mobile_search_input_text"":""#ffffff"",""header_mobile_search_text"":""#ffffff"",""header_search_background"":""#ffffff"",""header_search_button_background"":""#ffffff"",""header_search_button_text"":""#222e46"",""header_search_text"":""#222e46"",""header_shadow"":""0 -8px 10px #6c14eb"",""header_text"":""#222e46"",""header_text_cart"":""#999999"",""header_top_background"":""#000000"",""header_top_text"":""#ffffff"",""menu_background"":""#ffffff"",""menu_border"":""#e1e1e1"",""menu_drop_background"":""#ffffff"",""menu_drop_border"":""#e1e1e1"",""menu_drop_font"":""400 12px\/1.35 Montserrat, Helvetica Neue, Verdana, Arial, sans-serif"",""menu_drop_hover_text"":""#009688"",""menu_drop_shadow"":""0 3px 3px #e1e1e1"",""menu_drop_text"":""#282828"",""menu_drop_text_title"":""#282828"",""menu_font"":""600 14px\/1.35 Montserrat, Helvetica Neue, Verdana, Arial, sans-serif"",""menu_hover_background"":""#ffffff"",""menu_hover_text"":""#009688"",""menu_text"":""#222e46"",""vermenu_background"":""#fafafa"",""vermenu_border"":""#ebebeb"",""vermenu_font"":""500 12px\/1.35 Montserrat, Helvetica Neue, Verdana, Arial, sans-serif"",""vermenu_hover_background"":""#009688"",""vermenu_hover_text"":""#ffffff"",""vermenu_text"":""#444444"",""header_mobile_sidebar_background"":"""",""header_mobile_sidebar_color"":"""",""header_mobile_sidebar_border"":"""",""menu_content_background"":""#353535"",""menu_content_color"":""#ffffff"",""menu_content_border"":""#1f1f1f"",""menu_title_background"":""#ffffff"",""menu_title_color"":""#353535"",""menu_title_border"":""#1f1f1f""}",,header-style-08,,"{""content_1"":""<div class=\"store-info-top container\">\r\n<div class=\"row\">\r\n<div class=\"col-sm-12 col-left\">\r\n<div class=\"store-contact\"><a class=\"store-tel\" href=\"tel:0123456789\"> (0123) 456 xxx<\/a> <a class=\"store-mail\" href=\"mailto:codazon@sample.com\"> codazon@sample.com<\/a><\/div>\r\n<\/div>\r\n<div class=\"col-sm-12 col-right\">\r\n<div class=\"social-wrap f-right\"><a href=\"#\"><span class=\"fa fa-pinterest-p\"><span class=\"hidden\">pinterest<\/span><\/span><\/a> <a href=\"#\"><span class=\"fa fa-vimeo\"><span class=\"hidden\">vimeo<\/span><\/span><\/a> <a href=\"#\"><span class=\"fa fa-twitter\"><span class=\"hidden\">twitter<\/span><\/span><\/a> <a href=\"#\"><span class=\"fa fa-facebook\"><span class=\"hidden\">facebook<\/span><\/span><\/a> <a href=\"#\"><span class=\"fa fa-google-plus\"><span class=\"hidden\">google-plus<\/span><\/span><\/a><\/div>\r\n<\/div>\r\n<\/div>\r\n<\/div>"",""content_2"":""""}"
+header-style-10,"Header Style 10",1,"<body>
+    <referenceContainer name=""header.container"" htmlClass=""page-header header-style-10"" />
+    <referenceContainer name=""header.panel"">
+        <container name=""header-panel-row"" htmlTag=""div"" after=""skip_to_content"">
+            <container name=""header-panel-left"" htmlTag=""div"" htmlClass=""col-sm-10 header-panel-left"" />
+            <container name=""header-panel-right"" htmlTag=""div"" htmlClass=""col-sm-14 header-panel-right"" />
+            <container name=""header-panel-bottom"" htmlId=""header-panel-bottom"" htmlTag=""div"" htmlClass=""header-panel-bottom cdz-fix-left col-sm-24"">
+<container name=""header-bottom"" htmlTag=""div"" htmlClass=""row"" >
+                <container name=""header-menu-wrap"" htmlTag=""div"" htmlClass=""col-sm-16 col-md-18 header-menu-wrap"" />
+                <container name=""header-search-wrap"" htmlTag=""div"" htmlClass=""col-md-6 col-sm-8 header-search-wrap"" />
+            </container>
+ </container>
+</container>         
+    </referenceContainer>
+    
+    <move element=""utilities.toggle.linkslist"" destination=""header-panel-left"" before=""-"" />
+    <move element=""logo"" destination=""header-panel-left"" />
+    <move element=""top.links.features"" destination=""header-panel-right"" />
+    <move element=""minicart"" destination=""links.features.cart"" />
+    <move element=""links.features.cart"" destination=""top.links.features"" before=""-"" />
+    
+    <referenceBlock name=""header-contact-link"" remove=""true"" />
+
+    <referenceBlock name=""top.links"">
+        <action method=""setData"">
+            <argument name=""name"" xsi:type=""string"">css_class</argument>
+            <argument name=""value"" xsi:type=""string"">header links visible-xs</argument>
+        </action>
+    </referenceBlock>
+    
+    <move element=""header-links-list"" destination=""utilities.sidebar.left"" />
+    <move element=""catalog.topnav"" destination=""header-menu-wrap"" before=""-"" />
+    <move element=""mobi-cart-placeholder"" destination=""header-search-wrap"" />
+    <move element=""top.search"" destination=""header-search-wrap"" after=""-"" />
+    <move element=""store-menu-placeholder"" destination=""store.menu"" />
+</body>","{""header_background"":""#f6f7f9"",""header_background_file"":"""",""header_background_image_option"":""0 0"",""header_border"":""#f0f2f7"",""header_cart_background"":""transparent"",""header_cart_border"":"""",""header_cart_icon"":""#009688"",""header_cart_quality_background"":""#e3e8f0"",""header_cart_text"":""#009688"",""header_drop_background"":""#ffffff"",""header_drop_border_color"":""#dbdbdb"",""header_drop_hover_text"":""#009688"",""header_drop_text"":""#282828"",""header_hover_text"":""#009688"",""header_mobile_background"":""#ffffff"",""header_mobile_icon"":""#009688"",""header_mobile_search_border"":""#ffffff"",""header_mobile_search_input_background"":""#ffffff"",""header_mobile_search_input_border"":""#009688"",""header_mobile_search_input_text"":""#009688"",""header_mobile_search_text"":""#ffffff"",""header_search_background"":""#ffffff"",""header_search_button_background"":""transparent"",""header_search_button_text"":""#36405e"",""header_search_text"":""#a1a7bd"",""header_shadow"":""0px 4px 34px rgba(0, 0, 0, 0.08)"",""header_text"":""#a8aeba"",""header_text_cart"":""#999999"",""header_top_background"":""#ffffff"",""header_top_text"":""#34343c"",""menu_font"":""600 12px\/1.35 Rajdhani, Helvetica Neue, Verdana, Arial, sans-serif"",""menu_hover_background"":""transparent"",""menu_background"":""#ffffff"",""menu_border"":""#ffffff"",""menu_hover_text"":""#009688"",""menu_text"":""#343e5c"",""vermenu_background"":""#fafafa"",""vermenu_border"":""#ebebeb"",""vermenu_font"":""500 12px\/1.35 Rajdhani, Helvetica Neue, Verdana, Arial, sans-serif"",""vermenu_hover_background"":""#009688"",""vermenu_hover_text"":""#ffffff"",""vermenu_text"":""#444444"",""menu_drop_background"":""#ffffff"",""menu_drop_border"":""#e1e1e1"",""menu_drop_font"":""400 12px\/1.35 Rajdhani, Helvetica Neue, Verdana, Arial, sans-serif"",""menu_drop_hover_text"":""#009688"",""menu_drop_shadow"":""0 3px 3px #e1e1e1"",""menu_drop_text"":""#999999"",""menu_drop_text_title"":""#282828"",""header_mobile_sidebar_background"":"""",""header_mobile_sidebar_color"":"""",""header_mobile_sidebar_border"":"""",""menu_content_background"":""#ffffff"",""menu_content_color"":""#444444"",""menu_content_border"":""#d1d1d1"",""menu_title_background"":""#e8e8e8"",""menu_title_color"":""#333333"",""menu_title_border"":""#dbdbdb""}",,header-style-05,,"{""content_1"":"""",""content_2"":""""}"
+header-style-11,"Header Style 11",1,"<body>
+    <!-- Layout -->
+    <referenceContainer name=""header.container"" htmlClass=""page-header header-style-11"" />
+    <referenceContainer name=""header-container-inner"">
+	<container name=""header-panel"" htmlId=""header-panel"" htmlTag=""div"" htmlClass=""header panel"">
+        <container name=""header-top"" htmlId=""header-top"" before=""-"" htmlTag=""div"" htmlClass=""header-top"" />
+        <container name=""header-middle"" htmlId=""header-middle"" after=""header-top"" htmlTag=""div"" htmlClass=""header-middle container"" />
+        <container name=""header-bottom"" htmlId=""header-bottom"" after=""-"" htmlTag=""div"" htmlClass=""header-bottom"" />
+	</container>
+    </referenceContainer>
+    <referenceContainer name=""header-top"">
+		<container name=""header-top-panel"" htmlTag=""div"" htmlClass=""header-top-panel container"">
+			<container name=""header-top-row"" htmlTag=""div"" htmlClass=""header-top-row row"">
+				<container name=""header-top-left"" htmlTag=""div"" htmlClass=""col-sm-8 col-md-8 header-top-left"">
+					<block name=""header-extra-text-1"" class=""Codazon\ThemeLayoutPro\Block\Header"" template=""Codazon_ThemeLayoutPro::layout/header-content.phtml"">
+						<action method=""setData"">
+							<argument name=""name"" xsi:type=""string"">content_type</argument>
+							<argument name=""value"" xsi:type=""string"">content_1</argument>
+						</action>
+					</block>
+				</container>
+				<container name=""header-top-right"" htmlTag=""div"" htmlClass=""col-sm-16 col-md-14 header-panel-right"" />
+			</container>
+		</container>
+    </referenceContainer>
+    <referenceContainer name=""header.panel"">
+        <container name=""header-panel-row"" htmlTag=""div"" htmlClass=""header-panel-row row"">
+            <container name=""header-panel-left"" htmlTag=""div"" htmlClass=""col-sm-10 col-md-6 col-lg-6 header-panel-left"" />
+            <container name=""header-panel-center"" htmlTag=""div"" htmlClass=""col-sm-14 col-md-9 col-lg-10 header-panel-center"" />
+            <container name=""header-panel-right"" htmlTag=""div"" htmlClass=""col-sm-12 col-md-9 col-lg-7 header-panel-right"" />
+        </container>
+    </referenceContainer>
+    <move element=""header.panel"" destination=""header-middle"" />
+    <!-- End Layout -->
+    
+    <!-- Top Right -->
+    <move element=""top.links.features"" destination=""header-top-right"" before=""-"" />
+    <referenceContainer name=""header-top-right"">
+        <block class=""Magento\Store\Block\Switcher"" name=""header-switch-language"" template=""Magento_Store::switch/languages-style-02.phtml"" />
+        <block class=""Magento\Directory\Block\Currency"" name=""header-switch-currency"" template=""Magento_Directory::currency-style-02.phtml"" />
+        <block class=""Magento\Store\Block\Switcher"" name=""header-switch-store"" template=""switch/stores.phtml"">
+            <arguments>
+                <argument name=""id_modifier"" xsi:type=""string"">header-nav</argument>
+            </arguments>
+        </block>
+    </referenceContainer>
+    <!-- End Top Right -->
+    
+    <!-- Middle - Left -->
+    <move element=""logo"" destination=""header-panel-left"" />
+    <!-- End Middle - Left -->
+    
+    <!-- Middle - Center -->
+    <move element=""mobi-cart-placeholder"" destination=""header-panel-center"" />
+    <move element=""top.search"" destination=""header-panel-center"" before=""-"" />
+    <!-- End Middle - Center -->
+    
+    <!-- Middle - Right -->
+    <move element=""minicart"" destination=""header-panel-right"" after=""-"" />
+    <referenceContainer name=""header-panel-right"">
+        <block name=""header-extra-text-2"" class=""Codazon\ThemeLayoutPro\Block\Header"" template=""Codazon_ThemeLayoutPro::layout/header-content.phtml"">
+            <action method=""setData"">
+                <argument name=""name"" xsi:type=""string"">content_type</argument>
+                <argument name=""value"" xsi:type=""string"">content_2</argument>
+            </action>
+        </block>
+    </referenceContainer>
+    <referenceBlock name=""header-contact-link"" remove=""true"" />
+    <!-- End Middle - Right -->
+    
+    <!-- Bottom -->
+    <move element=""catalog.topnav"" destination=""header-bottom"" before=""-"" />
+    <move element=""store-menu-placeholder"" destination=""store.menu"" />
+    <!-- End Bottom -->
+    
+    <referenceBlock name=""utilities.sidebar.right"">
+        <action method=""setData"">
+            <argument name=""name"" xsi:type=""string"">required_blocks</argument>
+            <argument name=""value"" xsi:type=""array"">
+                <item name=""getAccountPanelStyle"" xsi:type=""string"">utilities.content</item>
+                <item name=""getHeaderWishlistStyle"" xsi:type=""string"">wishlist-sidebar</item>
+                <item name=""getMiniCartStyle"" xsi:type=""string"">minicart-sidebar</item>
+            </argument>
+        </action>
+    </referenceBlock>
+    <referenceBlock name=""utilities.sidebar.left"">
+        <action method=""setData"">
+            <argument name=""name"" xsi:type=""string"">required_blocks</argument>
+            <argument name=""value"" xsi:type=""boolean"">0</argument>
+        </action>
+    </referenceBlock>
+    
+    <referenceBlock name=""top.links"">
+        <action method=""setData"">
+            <argument name=""name"" xsi:type=""string"">css_class</argument>
+            <argument name=""value"" xsi:type=""string"">header links visible-xs</argument>
+        </action>
+    </referenceBlock>
+</body>","{""header_background"":""#ffffff"",""header_background_file"":"""",""header_background_image_option"":""0 0"",""header_border"":""#eaeaee"",""header_cart_background"":""transparent"",""header_cart_border"":"""",""header_cart_icon"":""#282828"",""header_cart_quality_background"":""#f96668"",""header_cart_text"":""#282828"",""header_drop_background"":""#ffffff"",""header_drop_border_color"":""#dbdbdb"",""header_drop_hover_text"":""#dddddd"",""header_drop_text"":""#282828"",""header_hover_text"":""#dddddd"",""header_mobile_background"":""#ffffff"",""header_mobile_icon"":""#282828"",""header_mobile_search_border"":""#ffffff"",""header_mobile_search_input_background"":""#ffffff"",""header_mobile_search_input_border"":""#000000"",""header_mobile_search_input_text"":""#282828"",""header_mobile_search_text"":""#ffffff"",""header_search_background"":""#ffffff"",""header_search_button_background"":""#282828"",""header_search_button_text"":""#ffffff"",""header_search_text"":""#282828"",""header_shadow"":"""",""header_text"":""#282828"",""header_text_cart"":""#999999"",""header_top_background"":""#ffffff"",""header_top_text"":""#282828"",""menu_background"":""#000000"",""menu_border"":""#000000"",""menu_content_background"":""#353535"",""menu_content_border"":""#1f1f1f"",""menu_content_color"":""#ffffff"",""menu_drop_background"":""#ffffff"",""menu_drop_border"":""#e1e1e1"",""menu_drop_font"":""400 12px\/1.35 Rajdhani, Helvetica Neue, Verdana, Arial, sans-serif"",""menu_drop_hover_text"":""#dddddd"",""menu_drop_shadow"":""0 3px 3px #e1e1e1"",""menu_drop_text"":""#999999"",""menu_drop_text_title"":""#282828"",""menu_font"":""500 14px\/1.35 Montserrat, Helvetica Neue, Verdana, Arial, sans-serif"",""menu_hover_background"":""#000000"",""menu_hover_text"":""#dddddd"",""menu_text"":""#ffffff"",""menu_title_background"":""#ffffff"",""menu_title_border"":""#1f1f1f"",""menu_title_color"":""#353535"",""vermenu_background"":""#fafafa"",""vermenu_border"":""#ebebeb"",""vermenu_font"":""500 12px\/1.35 Rajdhani, Helvetica Neue, Verdana, Arial, sans-serif"",""vermenu_hover_background"":""#e6c1a3"",""vermenu_hover_text"":""#555555"",""vermenu_text"":""#444444""}",,,,"{""content_1"":""<ul class=\"header-extra-links\">\r\n<li><a href=\"{{store url=\"contact\"}}\">Contact<\/a><\/li>\r\n<li><a href=\"#\">FAQ<\/a><\/li>\r\n<li><a href=\"#\">Ship to United State<\/a><\/li>\r\n<\/ul>"",""content_2"":""<div class=\"hot-line-wrapper\"><span class=\"msg-text\">Need Help? Call us now: <\/span><a class=\"telephone\" href=\"tel:123455688719\">(123) 455688719<\/a><\/div>""}"
+header-style-12,"Header Style 12",1,"<body>
+    <!-- Layout -->
+    <referenceContainer name=""header.container"" htmlClass=""page-header header-style-12"" />
+    <referenceContainer name=""header-container-inner"">
+        <container name=""header-sections"" htmlId=""header-sections"" before=""-"" htmlTag=""div"" htmlClass=""header-sections"">
+            <container name=""header-top"" htmlId=""header-top"" before=""-"" htmlTag=""div"" htmlClass=""header-top"" />
+            <container name=""header-middle"" htmlId=""header-middle"" after=""header-top"" htmlTag=""div"" htmlClass=""header-middle container"" />
+            <container name=""header-bottom"" htmlId=""header-bottom"" htmlTag=""div"" htmlClass=""header-panel-bottom"">
+                <container htmlClass=""container"" htmlTag=""div"">
+                    <container htmlClass=""row cdz-fix-left"" htmlTag=""div"">
+                        <container name=""header-vertical-menu-wrap"" htmlTag=""div"" htmlClass=""col-sm-6 header-vertical-menu-wrap"" label=""Header Vertical Menu"" />
+                        <container name=""header-menu-wrap"" htmlTag=""div"" htmlClass=""col-sm-18 header-menu-wrap"" />
+                    </container>
+                </container>
+            </container>
+        </container>
+    </referenceContainer>
+    <referenceContainer name=""header-top"">
+        <container name=""header-top-container"" htmlTag=""div"" htmlClass=""header-top-container container"">
+            <container name=""header-top-row"" htmlTag=""div"" htmlClass=""header-top-row row"">
+                <container name=""header-top-left"" htmlTag=""div"" htmlClass=""col-sm-8 header-top-left"">
+                    <block name=""header-extra-text-1"" class=""Codazon\ThemeLayoutPro\Block\Header"" template=""Codazon_ThemeLayoutPro::layout/header-content.phtml"">
+                        <action method=""setData"">
+                            <argument name=""name"" xsi:type=""string"">content_type</argument>
+                            <argument name=""value"" xsi:type=""string"">content_1</argument>
+                        </action>
+                    </block>
+                </container>
+                <container name=""header-top-right"" htmlTag=""div"" htmlClass=""col-sm-16 header-panel-right"" />
+            </container>
+        </container>
+    </referenceContainer>
+    <referenceContainer name=""header.panel"">
+        <container name=""header-panel-row"" htmlTag=""div"" htmlClass=""header-panel-row row"">
+            <container name=""header-panel-left"" htmlTag=""div"" htmlClass=""col-sm-6 header-panel-left"" />
+            <container name=""header-panel-center"" htmlTag=""div"" htmlClass=""col-sm-12 header-panel-center"" />
+            <container name=""header-panel-right"" htmlTag=""div"" htmlClass=""col-sm-6 header-panel-right"" />
+        </container>
+    </referenceContainer>
+    <move element=""header.panel"" destination=""header-middle"" />
+    <!-- End Layout -->
+    
+    <!-- Top Right -->
+    <move element=""top.links.features"" destination=""header-top-right"" before=""-"" />
+    <referenceContainer name=""header-top-right"">
+        <block class=""Magento\Store\Block\Switcher"" name=""header-switch-language"" template=""Magento_Store::switch/languages-style-02.phtml"" />
+        <block class=""Magento\Directory\Block\Currency"" name=""header-switch-currency"" template=""Magento_Directory::currency-style-02.phtml"" />
+        <block class=""Magento\Store\Block\Switcher"" name=""header-switch-store"" template=""switch/stores.phtml"">
+            <arguments>
+                <argument name=""id_modifier"" xsi:type=""string"">header-nav</argument>
+            </arguments>
+        </block>
+    </referenceContainer>
+    <!-- End Top Right -->
+    <move element=""mobi-cart-placeholder"" destination=""header-panel-left"" />
+    <move element=""top.search"" destination=""header-panel-left"" before=""-"" />
+    <!-- Middle - Left -->
+   
+    <!-- End Middle - Left -->
+    
+    <!-- Middle - Center -->
+    
+    <move element=""logo"" destination=""header-panel-center"" />
+    
+    <!-- End Middle - Center -->
+    
+    <!-- Middle - Right -->
+    <move element=""minicart"" destination=""header-panel-right"" after=""-"" />
+    <referenceBlock name=""header-contact-link"" remove=""true"" />
+    <!-- End Middle - Right -->
+    
+    <!-- Bottom -->
+    <move element=""catalog.topnav"" destination=""header-menu-wrap"" before=""-"" />
+    <move element=""store-menu-placeholder"" destination=""store.menu"" />
+    <move element=""store-vertical-menu"" destination=""header-vertical-menu-wrap"" />
+    <!-- End Bottom -->
+    
+    <referenceBlock name=""utilities.sidebar.right"">
+        <action method=""setData"">
+            <argument name=""name"" xsi:type=""string"">required_blocks</argument>
+            <argument name=""value"" xsi:type=""array"">
+                <item name=""getAccountPanelStyle"" xsi:type=""string"">utilities.content</item>
+                <item name=""getHeaderWishlistStyle"" xsi:type=""string"">wishlist-sidebar</item>
+                <item name=""getMiniCartStyle"" xsi:type=""string"">minicart-sidebar</item>
+            </argument>
+        </action>
+    </referenceBlock>
+    <referenceBlock name=""utilities.sidebar.left"">
+        <action method=""setData"">
+            <argument name=""name"" xsi:type=""string"">required_blocks</argument>
+            <argument name=""value"" xsi:type=""boolean"">0</argument>
+        </action>
+    </referenceBlock>
+    
+    <referenceBlock name=""top.links"">
+        <action method=""setData"">
+            <argument name=""name"" xsi:type=""string"">css_class</argument>
+            <argument name=""value"" xsi:type=""string"">header links visible-xs</argument>
+        </action>
+    </referenceBlock>
+</body>","{""header_background"":""#ffffff"",""header_background_file"":"""",""header_background_image_option"":""0 0"",""header_border"":""#ffffff"",""header_cart_background"":""#4ac2f7"",""header_cart_border"":""#19b2f5"",""header_cart_icon"":""#ffffff"",""header_cart_quality_background"":""#0d0d0d"",""header_cart_text"":""#ffffff"",""header_drop_background"":""#ffffff"",""header_drop_border_color"":""#dbdbdb"",""header_drop_hover_text"":""#19b2f5"",""header_drop_text"":""#282828"",""header_hover_text"":""#19b2f5"",""header_mobile_background"":""#19b2f5"",""header_mobile_icon"":""#ffffff"",""header_mobile_search_border"":""#ffffff"",""header_mobile_search_input_background"":""#ffffff"",""header_mobile_search_input_border"":""#ffffff"",""header_mobile_search_input_text"":""#ffffff"",""header_mobile_search_text"":""#ffffff"",""header_search_background"":""#ffffff"",""header_search_button_background"":""transparent"",""header_search_button_text"":""#19b2f5"",""header_search_text"":""#9c9c9c"",""header_shadow"":"""",""header_text"":""#34343c"",""header_text_cart"":""#999999"",""header_top_background"":""#ecf7fd"",""header_top_text"":""#34343c"",""menu_background"":""#19b2f5"",""menu_border"":""#fed41e"",""menu_content_background"":""#ffffff"",""menu_content_border"":""#e1e1e1"",""menu_content_color"":""#444444"",""menu_drop_background"":""#ffffff"",""menu_drop_border"":""#e1e1e1"",""menu_drop_font"":""400 13px\/1.35 PT Sans, Helvetica Neue, Verdana, Arial, sans-serif"",""menu_drop_hover_text"":""#19b2f5"",""menu_drop_shadow"":""0 3px 3px #e1e1e1"",""menu_drop_text"":""#999999"",""menu_drop_text_title"":""#282828"",""menu_font"":""600 14px\/1.35 PT Sans, Helvetica Neue, Verdana, Arial, sans-serif"",""menu_hover_background"":""#fed41e"",""menu_hover_text"":""#ffffff"",""menu_text"":""#ffffff"",""menu_title_background"":""#19b2f5"",""menu_title_border"":""#15a4e2"",""menu_title_color"":""#ffffff"",""vermenu_background"":""#ffffff"",""vermenu_border"":""#fed41e"",""vermenu_font"":""500 13px\/1.35 PT Sans, Helvetica Neue, Verdana, Arial, sans-serif"",""vermenu_hover_background"":""#eaeaea"",""vermenu_hover_text"":""#fed41e"",""vermenu_text"":""#282828""}",,,,"{""content_1"":""<ul class=\"header-extra-links\">\r\n<li><a href=\"{{store url=\"contact\"}}\">Contact<\/a><\/li>\r\n<li><a href=\"#\">FAQ<\/a><\/li>\r\n<li><a href=\"#\">Ship to United State<\/a><\/li>\r\n<\/ul>"",""content_2"":""""}"

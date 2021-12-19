@@ -1,0 +1,98 @@
+<?php
+/**
+ * Sunbrains
+ * @category  Sunbrains
+ * @package   Sunbrains_SMSProfile
+ * @author    Sunbrains
+ */
+
+// @codingStandardsIgnoreFile
+
+/** @var \Magento\Customer\Block\Form\Login $block */
+?>
+<?php 
+    $smsProfileHelper = $this->helper('Sunbrains\SMSProfile\Helper\Data');
+    $required = 0;
+    $otpLogin = $smsProfileHelper->getSmsProfileOtpOnLogin();
+    $validate = $smsProfileHelper->getSmsProfileMailPhoneValidationClass();
+    if($smsProfileHelper->getModuleStatus()) {
+        $required = $smsProfileHelper->getSmsProfilePhoneRequiredOnSignUp();
+    }
+?>
+<div class="block block-customer-login">
+    <div class="block-title">
+        <strong id="block-customer-login-heading" role="heading" aria-level="2"><?= $block->escapeHtml(__('Registered Customers')) ?></strong>
+    </div>
+    <div class="block-content" aria-labelledby="block-customer-login-heading">
+        <form class="form form-login"
+              action="<?= $block->escapeUrl($block->getPostActionUrl()) ?>"
+              method="post"
+              id="login-form"
+              data-mage-init='{"validation":{}}'>
+            <?= $block->getBlockHtml('formkey') ?>
+
+            <fieldset class="fieldset login" data-hasrequired="<?= $block->escapeHtml(__('* Required Fields')) ?>">
+                <div class="field note"><?= $block->escapeHtml(__('If you have an account, sign in with your email address.')) ?></div>
+                <div class="field email required">
+                    <?php if (in_array($otpLogin, ['login_otp','login_both']) && $smsProfileHelper->getModuleStatus()) { ?>
+                        <label class="label" for="email"><span><?= $block->escapeHtml(__('Email  or Telephone')) ?></span></label>
+                    <?php } else { ?>
+                        <label class="label" for="email"><span><?= $block->escapeHtml(__('Email')) ?></span></label>
+                    <?php } ?>
+                    <div class="control">
+                        <input name="login[username]" value="<?= $block->escapeHtmlAttr($block->getUsername()) ?>" <?php if ($block->isAutocompleteDisabled()): ?> autocomplete="off"<?php endif; ?> id="email" 
+                        <?php if (in_array($otpLogin, ['login_otp','login_both']) && $smsProfileHelper->getModuleStatus()) { echo 'type="text"';} else { echo 'type="email"'; } ?> class="input-text <?php if (in_array($otpLogin, ['login_otp','login_both']) && $smsProfileHelper->getModuleStatus()) { echo $validate ;}?> " title="<?= $block->escapeHtmlAttr(__('Email')) ?>" data-mage-init='{"mage/trim-input":{},"validation":{}}' data-validate="{required:true, <?php if($otpLogin =='login_pwd') { echo '\'validate-email\':true'; }?> }">
+
+                        <?php if(in_array($otpLogin, ['login_otp','login_both']) && $smsProfileHelper->getModuleStatus() && $smsProfileHelper->getPhoneNote()) { ?>
+                            <div class="profile-notice-phone">
+                                <span><?php echo $smsProfileHelper->getPhoneNote(); ?></span>
+                            </div>
+                        <?php } ?>    
+                    </div>
+                </div>
+
+                 <?php /*code for OTP */ ?>
+                    <?php 
+                        echo "<input type='hidden' name='login[otp]' class='verifiedotp' value='0'/>";
+                        if (in_array($otpLogin, ['login_otp','login_both']) && $smsProfileHelper->getModuleStatus()) {
+                        $sendOtpUrl = $this->getUrl('smsprofile/otp/send');
+                        $verifyOtpUrl = $this->getUrl('smsprofile/otp/verify');
+                        echo "<input type='hidden' class='sendUrlLogin' value='".$sendOtpUrl."'/>";
+                        echo "<input type='hidden' class='verifyUrlLogin' value='".$verifyOtpUrl."'/>";
+                        echo "<input type='hidden' class='logintype' value='".$otpLogin."'/>";
+                        
+                    ?>
+                        <div class="field">    
+                            <button class="send_otp_login action primary" style="display: none;margin-top: 15px;" type="button"><?php echo __('Generate OTP');?></button>
+                         </div>   
+                    <?php  } ?>
+                    
+                <?php /*code for OTP */ ?>
+
+                <?php if ($smsProfileHelper->getModuleStatus()) { ?> 
+                <div class="field password <?php if (in_array($otpLogin, ['login_pwd','login_both'])) { echo 'required"'; }?> " <?php if (!in_array($otpLogin, ['login_pwd','login_both'])) { echo 'style="display:none;"'; }?> >
+                    <label for="pass" class="label"><span><?= $block->escapeHtml(__('Password')) ?></span></label>
+                    <div class="control">
+                        <input name="login[password]" type="password" <?php if ($block->isAutocompleteDisabled()): ?> autocomplete="off"<?php endif; ?> class="input-text" id="pass" title="<?= $block->escapeHtmlAttr(__('Password')) ?>" <?php if (in_array($otpLogin, ['login_pwd','login_both'])) { echo 'data-validate="{required:true}"'; }?> >
+                    </div>
+                </div>
+                <?php } else { ?> 
+                    <div class="field password required" >
+                    <label for="pass" class="label"><span><?= $block->escapeHtml(__('Password')) ?></span></label>
+                    <div class="control">
+                        <input name="login[password]" type="password" <?php if ($block->isAutocompleteDisabled()): ?> autocomplete="off"<?php endif; ?> class="input-text" id="pass" title="<?= $block->escapeHtmlAttr(__('Password')) ?>" data-validate="{required:true}" >
+                    </div>
+                </div>
+                <?php } ?>
+                <?= $block->getChildHtml('form_additional_info') ?>
+                
+               
+
+                <div class="actions-toolbar">
+                    <div class="primary"><button type="submit" class="action login primary" name="send" id="send2"><span><?= $block->escapeHtml(__('Sign In')) ?></span></button></div>
+                    <div class="secondary"><a class="action remind" href="<?= $block->escapeUrl($block->getForgotPasswordUrl()) ?>"><span><?= $block->escapeHtml(__('Forgot Your Password?')) ?></span></a></div>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</div>

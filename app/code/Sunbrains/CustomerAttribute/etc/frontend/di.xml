@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!--
+  ~ /**
+  ~  * Sunbrains
+  ~  *
+  ~  * @category    Sunbrains
+  ~  * @package     Sunbrains_Loginhistory
+  ~  * @copyright   Copyright (c) Sunbrains
+  ~  *
+  ~  */
+  -->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Webkul\Marketplace\Observer\CustomerRegisterSuccessObserver" type="Sunbrains\CustomerAttribute\Observer\CustomerRegisterSuccessObserver" />
+</config>

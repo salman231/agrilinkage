@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Sunbrains
+ * @category  Sunbrains
+ * @package   Sunbrains_SMSProfile
+ * @author    Sunbrains
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Acl/etc/acl.xsd">
+    <acl>
+        <resources>
+            <resource id="Magento_Backend::admin">
+
+                <resource id="Sunbrains_SMSProfile::root" title="Sunbrains Mobile OTP Login" sortOrder="500">
+                    <resource id="Sunbrains_SMSProfile::smsprofiletemplates" title="SMS Profile Templates" sortOrder="100" />
+                    <resource id="Sunbrains_SMSProfile::smspromotional" title="Promotional SMS" sortOrder="110" />
+                    <resource id="Sunbrains_SMSProfile::smsprofilelog" title="SMS Profile Log" sortOrder="120" />
+                </resource>
+
+
+                <resource id="Magento_Backend::stores">
+                    <resource id="Magento_Backend::stores_settings">
+                        <resource id="Magento_Config::config">
+                            <resource id="Sunbrains_SMSProfile::config_root" title="Sunbrains SMSProfile" sortOrder="500" />
+                        </resource>
+                    </resource>
+                </resource>
+            </resource>
+        </resources>
+    </acl>
+</config>

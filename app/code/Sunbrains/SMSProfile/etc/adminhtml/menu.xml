@@ -1,0 +1,74 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Sunbrains
+ * @category  Sunbrains
+ * @package   Sunbrains_SMSProfile
+ * @author    Sunbrains
+ */ 
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Sunbrains_SMSProfile::smsprofile_root"
+             title="Mobile OTP Login"
+             module="Sunbrains_SMSProfile"
+             sortOrder="50"
+             resource="Sunbrains_SMSProfile::root"
+        />
+
+        <add id="Sunbrains_SMSProfile::smsprofile_root_commonlyvisible"
+             title="Mobile OTP Login"
+             module="Sunbrains_SMSProfile"
+             sortOrder="500"
+             parent="Sunbrains_SMSProfile::smsprofile_root"
+             resource="Sunbrains_SMSProfile::root" />
+
+        <add id="Sunbrains_SMSProfile::smsprofiletemplates"
+             title="OTP SMS Templates"
+             module="Sunbrains_SMSProfile"
+             sortOrder="100"
+             action="smsprofile/smsprofiletemplates/index"
+             resource="Sunbrains_SMSProfile::smsprofiletemplates"
+             parent="Sunbrains_SMSProfile::smsprofile_root" />
+
+        <add id="Sunbrains_SMSProfile::smspromotional"
+             title="Promotional SMS"
+             module="Sunbrains_SMSProfile"
+             sortOrder="100"
+             action="smsprofile/smspromotional/index"
+             resource="Sunbrains_SMSProfile::smspromotional"
+             parent="Sunbrains_SMSProfile::smsprofile_root"/>
+
+        <add id="Sunbrains_SMSProfile::smsprofilelog"
+             title="SMS Log"
+             module="Sunbrains_SMSProfile"
+             sortOrder="100"
+             action="smsprofile/smsprofilelog/index"
+             resource="Sunbrains_SMSProfile::smsprofilelog"
+             parent="Sunbrains_SMSProfile::smsprofile_root"
+             dependsOnConfig="sunbrainssmsprofile/smsprofilelog/enable"/>
+
+        <add id="Sunbrains_SMSProfile::config_root"
+             title="Configuration"
+             module="Sunbrains_SMSProfile"
+             sortOrder="500"
+             action="adminhtml/system_config/edit/section/sunbrainssmsprofile"
+             parent="Sunbrains_SMSProfile::smsprofile_root"
+             resource="Sunbrains_SMSProfile::config_root" />
+
+        <add id="Sunbrains_SMSProfile::useful_links"
+             title="Useful Links"
+             module="Sunbrains_SMSProfile"
+             sortOrder="999"
+             parent="Sunbrains_SMSProfile::smsprofile_root"
+             resource="Sunbrains_SMSProfile::root" />
+        <!--<add id="Sunbrains_SMSProfile::documentation"
+             title="Documentation"
+             module="Sunbrains_SMSProfile"
+             sortOrder="10"
+             target="_blank"
+             parent="Sunbrains_SMSProfile::useful_links"
+             resource="Sunbrains_SMSProfile::root" />-->
+    </menu>
+</config>

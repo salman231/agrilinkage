@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <!-- 
+/**
+ * Sunbrains
+ * @category  Sunbrains
+ * @package   Sunbrains_SMSProfile
+ * @author    Sunbrains
+ */
+ -->
+ 
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">smspromotional_form.smspromotional_form_data_source</item>
+        </item>
+        <item name="template" xsi:type="string">templates/form/collapsible</item>
+    </argument>
+    <settings>
+        <buttons>
+            <button name="back" class="Sunbrains\SMSProfile\Block\Adminhtml\SmsPromotional\Edit\Buttons\Back"/>
+            <button name="reset" class="Sunbrains\SMSProfile\Block\Adminhtml\SmsPromotional\Edit\Buttons\Reset"/>
+            <button name="save" class="Sunbrains\SMSProfile\Block\Adminhtml\SmsPromotional\Edit\Buttons\Send"/>
+        </buttons>
+        <ajaxSaveType>simple</ajaxSaveType> 
+        <namespace>smspromotional_form</namespace>
+        <dataScope>data</dataScope>
+        <deps>
+            <dep>smspromotional_form.smspromotional_form_data_source</dep>
+        </deps>
+    </settings>
+
+    <dataSource name="smspromotional_form_data_source">
+        <argument name="data" xsi:type="array">
+            <item name="js_config" xsi:type="array">
+                <item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+            </item>
+        </argument>
+        <settings>
+            <submitUrl path="smsprofile/smspromotional/send"/>
+        </settings>
+        <dataProvider class="Sunbrains\SMSProfile\Model\SmsPromotional\DataProvider" name="smspromotional_form_data_source">
+            <settings>
+                <requestFieldName>id</requestFieldName>
+                <primaryFieldName>entity_id</primaryFieldName>
+            </settings> 
+        </dataProvider>
+    </dataSource>
+    
+    <fieldset name="smspromotional">
+        <settings>
+            <collapsible>false</collapsible>
+            <label translate="true">SMS Promotional Information</label>
+        </settings>
+
+        <field name="selectgrid" sortOrder="20" formElement="select">
+            <argument name="data" xsi:type="array">
+                
+                <item name="config" xsi:type="array">
+                  <item name="source" xsi:type="string">smspromotional</item> 
+                  <item name="component" xsi:type="string">Sunbrains_SMSProfile/js/form/element/selecttargetgrid</item>
+                </item> 
+             </argument>
+
+            <settings>
+                <required>true</required>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+                <dataType>text</dataType>
+                <label translate="true">Select Grid Type</label>
+                <dataScope>selectgrid</dataScope>
+                <componentType>field</componentType>
+            </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <options class="Sunbrains\SMSProfile\Model\Config\Source\SmsPromotionalOptions"/>
+                    </settings>
+                </select>
+            </formElements>
+        </field>     
+
+        <field name="custom" sortOrder="40" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">smspromotional_form</item>
+                    <item name="visibleValue" xsi:type="string">custom</item>
+                    <item name="tooltip" xsi:type="array">
+                        <item name="description" xsi:type="string">Please enter comma seperated numbers with or without country code.
+                        </item>
+                    </item>
+                </item>
+            </argument>
+            <settings>
+                <required>true</required>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+                <dataType>string</dataType>
+                <label translate="true">To Numbers</label>
+                <dataScope>tonumbers</dataScope>
+                <componentType>field</componentType>
+                <visible>false</visible>
+                <notice>Enter number with or without '+',country code as per your selected service provider requirement. E.g.: 1234567890 or 911234567890 or +911234567890 </notice>                
+            </settings>
+        </field>
+
+         <field name="csv">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">string</item>
+                    <item name="source" xsi:type="string">smspromotional_form</item>
+                    <item name="label" xsi:type="string" translate="true">Import Csv</item>
+                    <item name="visible" xsi:type="boolean">false</item>
+                    <item name="additionalClasses" xsi:type="string">admin__field csv</item>
+                    <item name="visibleValue" xsi:type="string">csv</item>
+                    <item name="formElement" xsi:type="string">fileUploader</item>
+                    <item name="elementTmpl" xsi:type="string">ui/form/element/uploader/uploader</item>
+                    <item name="sortOrder" xsi:type="number">45</item>
+                    <item name="uploaderConfig" xsi:type="array">
+                        <item name="url" xsi:type="url" path="smsprofile/smspromotional/upload"/>
+                    </item>
+                    <item name="notice" xsi:type="string">In Csv file, enter number without '+' and with or without country code as per your selected service provider requirement. e.g.: 1234567890 or 911234567890</item>
+                </item>
+            </argument>
+             <settings>
+                <required>true</required>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+        </field>
+
+        <field name="download">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="template" xsi:type="string">ui/form/field</item>
+                    <item name="elementTmpl" xsi:type="string">Sunbrains_SMSProfile/form/element/download</item>
+                    <item name="label" xsi:type="string">Download Sample Csv</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="source" xsi:type="string">smspromotional_form</item>
+                    <item name="sortOrder" xsi:type="number">46</item>
+                    <item name="visibleValue" xsi:type="string">csv</item>
+                    <item name="additionalClasses" xsi:type="string">admin__field samplcsv</item>
+                </item>
+            </argument>
+        </field>
+
+        <container name="selectgrid_value_customer_container">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="sortOrder" xsi:type="number">70</item>
+                </item>
+            </argument>
+            <htmlContent name="html_content">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="visible" xsi:type="boolean">false</item>
+                        <item name="additionalClasses" xsi:type="string">admin__field customer_container</item>
+                    </item>
+                </argument>
+                <argument name="block" xsi:type="object">Sunbrains\SMSProfile\Block\Adminhtml\SmsPromotional\Container\Customer</argument>
+            </htmlContent>
+        </container>
+        
+        <container name="selectgrid_value_customer_group_container">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="sortOrder" xsi:type="number">75</item>
+                </item>
+            </argument>
+            <htmlContent name="html_content">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="visible" xsi:type="boolean">false</item>
+                        <item name="additionalClasses" xsi:type="string">admin__field customer_group_container</item>
+                    </item>
+                </argument>
+                <argument name="block" xsi:type="object">Sunbrains\SMSProfile\Block\Adminhtml\SmsPromotional\Container\CustomerGroup</argument>
+            </htmlContent>
+        </container>
+        
+        <field name="message" sortOrder="80" formElement="textarea">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">smspromotional_form</item>
+                </item>
+            </argument>
+            <settings>
+                <required>true</required>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                    <rule name="max_text_length" xsi:type="number">918</rule>
+                </validation>
+                <dataType>text</dataType>
+                <label translate="true">Message </label>
+                <dataScope>message</dataScope>
+                <componentType>field</componentType>
+                <notice> Max 918 characters allowed. Text may incurs credit charges for each 160 characters.</notice>
+            </settings>
+        </field>
+    </fieldset>
+</form>

@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+ <!-- 
+/**
+ * Sunbrains
+ * @category  Sunbrains
+ * @package   Sunbrains_SMSProfile
+ * @author    Sunbrains
+ */ 
+ -->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+     <virtualType name="SMSPofileTemplatesFormModifierPool" type="Magento\Ui\DataProvider\Modifier\Pool">
+        <arguments>
+            <argument name="modifiers" xsi:type="array">
+                <item name="smsprofiletemplates_data" xsi:type="array">
+                    <item name="class" xsi:type="string">Sunbrains\SMSProfile\Ui\DataProvider\SMSProfileTemplates\Form\Modifier\SMSProfileTemplatesData</item>
+                    <item name="sortOrder" xsi:type="number">11</item>
+                </item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <type name="Sunbrains\SMSProfile\Model\SMSProfileTemplates\DataProvider">
+        <arguments>
+            <argument name="pool" xsi:type="object">SMSPofileTemplatesFormModifierPool</argument>
+        </arguments>
+    </type>
+
+    <virtualType name="SmsPromotionalFormModifierPool" type="Magento\Ui\DataProvider\Modifier\Pool">
+        <arguments>
+            <argument name="modifiers" xsi:type="array">
+                <item name="smspromotional_data" xsi:type="array">
+                    <item name="class" xsi:type="string">Sunbrains\SMSProfile\Ui\DataProvider\SmsPromotional\Form\Modifier\SmsPromotionalData</item>
+                    <item name="sortOrder" xsi:type="number">12</item>
+                </item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <type name="Sunbrains\SMSProfile\Model\SmsPromotional\DataProvider">
+        <arguments>
+            <argument name="pool" xsi:type="object">SmsPromotionalFormModifierPool</argument>
+        </arguments>
+    </type>
+    <type name="Magento\Backend\Model\Menu\Item">
+        <plugin name="sb_smsprofile_menu_item_newtab" type="Sunbrains\SMSProfile\Plugin\Magento\Backend\Model\Menu\Item" />
+    </type>
+</config>

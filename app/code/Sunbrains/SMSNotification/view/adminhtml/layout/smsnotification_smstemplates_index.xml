@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!-- 
+/**
+ * Sunbrains
+ * Copyright (C) 2019 Sunbrains <info@sunbrains.com>
+ *
+ * @category Sunbrains
+ * @package Sunbrains_SMSNotification
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.sunbrains.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Sunbrains <info@sunbrains.com>
+ */ 
+ -->
+ 
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="admin-1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+	<update handle="styles"/>
+	<referenceContainer name="content">
+            <uiComponent name="smstemplates_listing"/>
+	</referenceContainer>
+</page>	

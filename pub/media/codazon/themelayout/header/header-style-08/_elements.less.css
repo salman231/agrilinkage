@@ -1,0 +1,91 @@
+/*Sport*/
+@media @tablet_vertical {
+	.page-header{
+		background:@header_background;
+		.panel.wrapper{
+			border:0;
+		}
+		.header-top{
+			background:@header_top_background;
+			padding: 7px 0;
+		}
+		.header-search-container{
+			display: none;
+		}
+		/*Header top left*/
+		.store-contact{
+			font-size: 11px;
+	    	letter-spacing: 1px;
+	    	margin-top: 2px;
+	    	padding: 0 10px;
+			a{
+				margin-right:25px;
+				.abs-link(@header_top_text, @header_hover_text);
+				.rtl-layout &{
+					margin-right:0;
+					margin-left:25px;
+					float: right
+				}
+				.fa{
+					margin-right:5px;
+					.rtl-layout &{
+						margin-right:0;
+						margin-left:5px;
+					}
+				}
+			}
+		}
+		/*Header top right*/
+		.social-wrap a{			
+			.abs-link(#ffffff, @header_hover_text);
+			font-size: 0;
+		    color: #ffffff;
+		    display: inline-block;
+		    width: 25px;
+		    margin: 0 3px;
+		    text-align: center;
+		    .abs-transition();
+			.fa{
+				font-size: 14px
+			}
+			.rtl-layout &{
+				padding-left:0;
+				padding-right: 20px
+			}
+		}
+		/*search*/
+		.header-search-container.search-opened{
+			display: block
+		}
+		.search-trigger:before{
+			.abs-transition();
+		}		
+	}
+	.page-header{
+		.sticky-menu:not(.active){
+			margin-top:0;
+			margin-bottom:0;			
+		}
+	}
+
+}
+@media @tablet_strict{
+	.page-header .logo {
+	    margin: 10px auto 0 20px;
+	}
+}
+// Mobile
+//----------------------------
+@media @phone{
+	.page-header {
+		.header-top{
+			display: none
+		}
+		.mobi-cart-wrapper{
+			right: 15px;
+		}
+		.header-search{
+			right:50px;
+		}
+	}
+}

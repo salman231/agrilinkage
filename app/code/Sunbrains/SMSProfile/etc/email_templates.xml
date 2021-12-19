@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+ <!-- 
+/**
+ * Sunbrains
+ * @category  Sunbrains
+ * @package   Sunbrains_SMSProfile
+ * @author    Sunbrains
+ */
+ -->
+ 
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Email:etc/email_templates.xsd">
+    <template id="smsprofilealert_template" label="SmsProfileAlert" file="smsprofilealert.html" type="html" module="Sunbrains_SMSProfile" area="frontend"/>
+</config>

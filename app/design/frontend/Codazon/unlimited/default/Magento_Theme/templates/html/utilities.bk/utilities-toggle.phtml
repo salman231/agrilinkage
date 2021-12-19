@@ -1,0 +1,13 @@
+<?php
+	/**
+	 * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+	 * See COPYING.txt for license details.
+	 */
+?>
+<?php
+$direction = $this->getData('direction')?:'left';
+$section = $this->getData('section')?:'utilities-linkslist';
+?>
+<div class="utilies-toggle-wrap hidden-xs" ng-controller="UtilitiesPanelCtrl">
+    <md-button aria-label="<?php echo __('Click to open'); ?>" class="md-icon-button md-ink-ripple toggle-btn" ng-click="toggleSidebar('<?php echo $direction ?>', '<?php echo $section ?>')"></md-button>
+</div>

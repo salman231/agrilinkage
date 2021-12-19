@@ -1,0 +1,405 @@
+/**
+ * Copyright © 2017 Codazon, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */ 
+var CodazonMaterialApp = angular.module('CodazonMaterialApp', ['ngMaterial', 'ngMessages']);
+
+
+CodazonMaterialApp.config(function($mdThemingProvider) {
+    $mdThemingProvider.theme('altTheme')
+        .primaryPalette('deep-purple')
+        .accentPalette('blue');
+});
+CodazonMaterialApp.controller('CodazonAppCtrl', function ($scope) {});
+CodazonMaterialApp.controller('DropdownMenuCtrl', function ($mdDialog, $element) {
+    var originatorEv = null;
+    this.openMenu = function ($mdOpenMenu, ev) {
+        originatorEv = ev;
+        $mdOpenMenu(ev);
+        require(['jquery'], function($) {
+            $($element).trigger('dropdowndialogopen');
+            $($element).find('[data-block=minicart]').trigger('dropdowndialogopen');
+        });
+    };
+});
+
+
+var PopupCtrl = function ($mdPanel) {
+    this._mdPanel = $mdPanel;
+    this.disableParentScroll = true;
+}
+PopupCtrl.prototype.showDialog = function ($event) {
+    var target = $event.target;
+    var position = this._mdPanel.newPanelPosition().absolute().center();
+    var animation = this._mdPanel.newPanelAnimation();
+    animation.withAnimation(this._mdPanel.animation.FADE);
+    var config = {
+        animation: animation,
+        attachTo: angular.element(document.body),
+        controller: PanelDialogCtrl,
+        controllerAs: 'ctrl',
+        disableParentScroll: this.disableParentScroll,
+        templateUrl: target.getAttribute('data-templateurl'),
+        hasBackdrop: true,
+        panelClass: 'cdz-popup',
+        position: position,
+        trapFocus: true,
+        zIndex: 150,
+        clickOutsideToClose: true,
+        escapeToClose: true,
+        focusOnOpen: true
+    };
+    this._mdPanel.open(config);
+}
+
+var PanelDialogCtrl = function (mdPanelRef) {
+    this._mdPanelRef = mdPanelRef;
+}
+
+CodazonMaterialApp.controller('PopupCtrl', PopupCtrl);
+CodazonMaterialApp.controller('PanelDialogCtrl', PanelDialogCtrl);
+
+PanelDialogCtrl.prototype.closeDialog = function () {
+    var panelRef = this._mdPanelRef;
+    panelRef && panelRef.close().then(function () {
+        angular.element(document.querySelector('.demo-dialog-open-button')).focus();
+        panelRef.destroy();
+    });
+};
+CodazonMaterialApp.controller('UtilitiesPanelCtrl', function ($scope, $timeout, $mdSidenav, $log, $element) {
+    $scope.toggleSidebar = function(navID, section, triggerEvent){
+        if (typeof section === 'undefined') {
+            section = 'utilities-main';
+        }
+        if (section) {
+            require(['jquery'], function($) {
+                var $activeSection = $('#' + section);
+                $activeSection.addClass('active').show().siblings().hide().removeClass('active');
+            });
+        }
+        var openClass = 'md-panel-open-' + navID;
+        if (typeof $mdSidenav(navID).clicked == 'undefined') {
+            $mdSidenav(navID).clicked = true;
+            $mdSidenav(navID).onClose(function () {
+                //document.body.classList.remove(openClass);
+                require(['jquery'], function($) {
+                    $('body').removeClass(openClass);
+                    var $nav = $('[md-component-id="' + navID + '"]');
+                    $nav.css({
+                        top: '',
+                        transition: ''
+                    });
+                    $nav.parent().find('.md-sidenav-backdrop').css({
+                        top: '',
+                        width: '100%',
+                        height: '100%',
+                        transition: ''
+                    });
+                    
+                    $('.js-sticky-menu').css({top: '', transition: ''});
+                    if (typeof window.scrollBarWidth != 'undefined') {
+                        $('body').css({marginRight: ''});
+                    }
+                });
+            });
+        }
+        //document.body.classList.add(openClass);
+        require(['jquery'], function($) {
+            var $nav = $('[md-component-id="' + navID + '"]');
+            var wintop = $(window).scrollTop();
+            $nav.css({
+                top: wintop,
+                transition: 'none'
+            });
+            $nav.parent().find('.md-sidenav-backdrop').css({
+                top: wintop,
+                width: '100%',
+                height: '100%',
+                transition: 'none'
+            });
+            $('.js-sticky-menu.active').css({top: wintop, transition: 'none'});
+            $('body').addClass(openClass);
+            if (typeof window.scrollBarWidth != 'undefined') {
+                $('body').css({marginRight: window.scrollBarWidth});
+            }
+        });
+
+        $mdSidenav(navID)
+            .toggle()
+            .then(function () {
+                $log.debug("toggle " + navID + " is done");
+                if (typeof triggerEvent !== 'undefined') {
+                    require(['jquery'], function($) {
+                        $($element).trigger(triggerEvent);
+                    });
+                }
+            });
+    }
+    $scope.toggleLeft = function(section, triggerEvent){
+        $scope.toggleSidebar('left', section, triggerEvent);
+    }
+    $scope.toggleRight = function(section, triggerEvent){
+        $scope.toggleSidebar('right', section, triggerEvent);
+    }
+    
+    require(['jquery'], function($) {
+        if ($('md-sidenav #utilies-minicart').length) {
+            $('[data-block=minicart]').on('click', '[data-action="close"]', function(e) {
+                e.stopPropagation(); $mdSidenav('right').close(); document.body.classList.remove('md-panel-open-right');
+            });
+        }
+    });
+});
+CodazonMaterialApp.controller('DialogCtrl', function ($scope, $mdDialog, $element) {
+    $scope.status = '  ';
+    $scope.customFullscreen = false;
+    $scope.showAdvanced = function (ev) {
+        var target = ev.target;
+        $mdDialog.show({
+            controller: DialogController,
+            templateUrl: target.getAttribute('data-templateurl'),
+            parent: angular.element(document.body),
+            targetEvent: ev,
+            clickOutsideToClose: true,
+            fullscreen: $scope.customFullscreen, // Only for -xs, -sm breakpoints.
+            onComplete: function() {
+                var dom = document.getElementsByTagName('html');
+                document.body.style.overflowY = 'scroll';
+                dom[0].style.overflowY = '';
+            }
+        }).then(function (answer) {
+            $scope.status = 'You said the information was "' + answer + '".';            
+        }, function () {
+            $scope.status = 'You cancelled the dialog.';
+        });
+    };
+    $scope.showPrerenderedDialog = function (ev, targetId) {
+        var target = ev.target;
+        if (target.getAttribute('data-contentelement')) {
+            targetId = target.getAttribute('data-contentelement');
+        }
+        
+        if (target.getAttribute('data-event')) {
+            var eventName = target.getAttribute('data-event');
+            var event = new Event(eventName);
+            console.log(document.getElementById(targetId));
+            document.getElementById(targetId).dispatchEvent(event);
+        }
+        $mdDialog.show({
+            controller: DialogController,
+            contentElement: '#' + targetId,
+            parent: angular.element(document.body),
+            targetEvent: ev,
+            clickOutsideToClose: true
+        });
+    };
+
+    function DialogController($scope, $mdDialog) {
+        $scope.hide = function () {
+            $mdDialog.hide();
+        };
+
+        $scope.cancel = function () {
+            $mdDialog.cancel();
+        };
+        $scope.answer = function (answer) {
+            $mdDialog.hide(answer);
+        };
+    }
+});
+CodazonMaterialApp.controller('WishListCtrl', function($scope, $compile) {
+    $scope.wishlist = function() {}
+    require(['Magento_Customer/js/customer-data'], function(customerData) {
+        $scope.wishlist = customerData.get('wishlist');
+    });
+    $scope.getCartData = function(cartParamString, key) {
+        var cartParam = JSON.parse(cartParamString);
+        if (cartParam) {
+            if (cartParam.data[key]) {
+                return cartParam.data[key];
+            } else {
+                return '';
+            }
+        } else {
+            return '';
+        }
+    }
+    $scope.getCartAction = function(cartParamString) {
+        var cartParam = JSON.parse(cartParamString);
+        return cartParam.action;
+    }
+    $scope.parseInt = function(str) {
+        return parseInt(str);
+    }
+});
+CodazonMaterialApp.filter('to_trusted', ['$sce', function($sce) {
+    return function(text) {
+        return $sce.trustAsHtml(text);
+    };
+}]);
+
+var angularCompileElement = function($element) {
+    angular.element(document.getElementsByTagName('body')).injector().invoke(function($compile, $rootScope) {
+        var template = angular.element($element);
+        $compile(template)($rootScope);
+    });
+}
+require(['jquery'], function($) {
+    window.getScrollBarWidth = function() {
+        var $outer = $('<div>').css({visibility: 'hidden', width: 100, overflow: 'scroll'}).appendTo('body'),
+            widthWithScroll = $('<div>').css({width: '100%'}).appendTo($outer).outerWidth();
+        $outer.remove();
+        return 100 - widthWithScroll;
+    };
+    window.scrollBarWidth = window.getScrollBarWidth();
+    $(window).on('resize', function() {
+        window.scrollBarWidth = window.getScrollBarWidth();
+    });
+    function buildFormFields() {
+        $('form').each(function() {
+            var $form = $(this);
+            if ($form.find('.mt-field').length) {
+                $('.mt-field:not(.mt-field-built)', $form).each(function(i, el) {
+                    var $field = $(this);
+                    $field.addClass('mt-field-built');
+                    if ($field.find('.control > input[type=text], .control > textarea').length) {
+                        var $label = $field.find('label');
+                        var $input = $field.find('.control > input[type=text], .control > textarea');
+                        var $container = $('<md-input-container class="md-block flex-gt-sm"></md-input-container>');
+                        $label.removeClass('label').html($label.text());
+                        $container.insertBefore($input);
+                        $label.appendTo($container);
+                        $input.appendTo($container);
+                        if ($input.is('textarea')) {
+                            $input.css({height: 81});
+                        }
+                        if ($field.hasClass('required')) {
+                            $input.attr('required', '1');
+                        }
+                    }
+                    $(window).load(function() {
+                        setTimeout(function() {
+                            angularCompileElement($container);
+                        }, 3000);
+                    });
+                });
+            }
+        });
+    }
+    function replaceTag($obj, newTag) {
+        var $newTag = $('<' + newTag + '>');
+        $newTag.insertAfter($obj);
+        if($obj.children().length) {
+            $obj.children().appendTo($newTag);
+        } else if($obj.html()) {
+            $newTag.html($obj.html());
+        }
+        var obj = $obj.get(0);
+        $.each(obj.attributes, function(id, el) {
+            $newTag.attr(el.name, el.value);
+        });
+        $obj.remove();
+        return $newTag;
+    }
+    function builTabs() {
+        $('[data-role=md-tabs]').each(function(){
+            var $tabs = $(this);
+            $tabs = replaceTag($tabs, 'md-tabs');
+            $tabs.attr('md-dynamic-height', 1);
+            $('.tab-item', $tabs).each(function(id, el) {
+                var $tabItem = $(this), $tabContent = $('<md-tab-body>');
+                $tabItem.children().appendTo($tabContent);
+                $tabContent.appendTo($tabItem);
+                var $tabLabel = $('<md-tab-label>'), $tabTitle = $tabContent.find('.tab-title');
+                $tabLabel.prependTo($tabItem);
+                $tabLabel.html($tabTitle.html());
+                $tabItem = replaceTag($tabItem, 'md-tab');
+                $tabTitle.remove();
+            });
+            
+            $tabs.wrap('<md-content>');
+            $tabs.removeClass('hidden').hide().fadeIn(300);
+            var $tabsWrap =  $tabs.parent();
+            angularCompileElement($tabsWrap);
+        });
+    }
+    function builDynamicTabs() {
+        var deskEvent = 'cdz_desktop', mobiEvent = 'cdz_mobile';
+        $window = $(window);
+        $('[data-role=tabs-dynamic-control]').each(function(){
+            var $tabs = $(this);
+            var $container = $tabs.parents('.js-tab-dc-container').first();
+            if ($container.length == 0) {
+                $container = $tabs.parents('[data-role=js-tab-dc-container]');
+            }
+            var $linkPlaceholder = $container.find('.tab-links-placeholder');
+            if ($linkPlaceholder.length == 0) {
+                $linkPlaceholder = $container.find('[data-role=tab-links-placeholder]');
+            }
+            var $ul = $('<ul class="box-cate-link hidden-xs abs-dropdown">');
+            $linkPlaceholder.empty();
+            $ul.appendTo($linkPlaceholder).unwrap();
+            var $mbTitle = $('<a href="javascript:void(0)" class="mobile-toggle visible-xs">');
+            $mbTitle.insertBefore($ul);
+            $('.tab-item', $tabs).each(function(id, el) {
+                var $tabItem = $(this);
+                var $tabTitle = replaceTag($tabItem.find('.tab-title'), 'a').attr('href', 'javascript:void(0)');
+                var $li = $('<li class="item">').append($tabTitle);
+                $li.appendTo($ul);
+                if (id == 0) {
+                    $li.addClass('active');
+                    $tabItem.addClass('active');
+                    $mbTitle.text($tabTitle.text());
+                }
+                $li.on('click', function() {
+                    $tabItem.addClass('active').siblings().removeClass('active');
+                    $li.addClass('active').siblings().removeClass('active');
+                    $mbTitle.text($tabTitle.text());
+                    if (window.innerWidth < 768) {
+                        $ul.slideUp(300);
+                        $mbTitle.removeClass('open');
+                    }
+                });
+            });
+            $ul.removeClass('hidden-xs');
+            function toggleUL() {
+                if (window.innerWidth < 768) {
+                    $ul.hide();
+                } else {
+                    $ul.css('display', '');
+                }
+            }
+            toggleUL();
+            $window.on(deskEvent, toggleUL).on(mobiEvent, toggleUL);
+            $('body').on('click', function(e) {
+                if ($mbTitle.hasClass('open')) {
+                var $target = $(e.target);
+                    var cond1 = $target.is($mbTitle),
+                    cond2 = $mbTitle.find($target).length,
+                    cond3 = $target.is($ul),
+                    cond4 = $ul.find($target).length;
+                    if (!(cond1 || cond2 || cond3 || cond4)) {
+                        $ul.slideUp(300);
+                        $mbTitle.removeClass('open');
+                    }
+                }
+            });
+            $mbTitle.on('click', function() {
+                $ul.slideToggle(300);
+                $mbTitle.toggleClass('open');
+            });
+            $tabs.removeClass('hidden');
+        });
+    }
+    if (document.readyState == 'complete') {
+        builTabs();
+        buildFormFields();
+        builDynamicTabs();
+    } else {
+        $(document).ready(function() {
+            builTabs();
+            buildFormFields();
+            builDynamicTabs();
+        });
+    }
+});

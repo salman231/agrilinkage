@@ -1,0 +1,74 @@
+<?php
+/**
+ * Copyright © 2017 Codazon, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+/** @var \Magento\Customer\Block\Form\Login $block */
+?>
+<?php
+$smsProfileHelper = $this->helper('Sunbrains\SMSProfile\Helper\Data');
+$required = 0;
+$otpLogin = $smsProfileHelper->getSmsProfileOtpOnLogin();
+$validate = $smsProfileHelper->getSmsProfileMailPhoneValidationClass();
+if($smsProfileHelper->getModuleStatus()) {
+    $required = $smsProfileHelper->getSmsProfilePhoneRequiredOnSignUp();
+}
+?>
+<?php
+/**
+ * Customer login form template
+ *
+ * @see \Magento\Customer\Block\Form\Login
+ * @var $block \Magento\Customer\Block\Form\Login
+ */
+?>
+<!-- login style default -->
+<div class="md-content">
+    <form name="loginForm" action="<?php echo $block->escapeUrl($block->getPostActionUrl()) ?>" method="post" data-mage-init='{"themewidgets":{"codazon.customValidation": {}}}'>
+        <?php echo $block->getBlockHtml('formkey'); ?>
+        <div class="md-block">
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label is-upgraded">
+                <input class="mdl-textfield__input" type="text" id="email_address" name="login[username]" data-validate='{"required":true}' />
+                <label class="mdl-textfield__label"><?php echo __('Email/Phone Number') ?></label>
+            </div>
+        </div>
+
+        <?php /*code for OTP */ ?>
+        <?php
+        echo "<input type='hidden' name='login[otp]' class='verifiedotp' value='0'/>";
+        if (in_array($otpLogin, ['login_otp','login_both']) && $smsProfileHelper->getModuleStatus()) {
+            $sendOtpUrl = $this->getUrl('smsprofile/otp/send');
+            $verifyOtpUrl = $this->getUrl('smsprofile/otp/verify');
+            echo "<input type='hidden' class='sendUrlLogin' value='".$sendOtpUrl."'/>";
+            echo "<input type='hidden' class='verifyUrlLogin' value='".$verifyOtpUrl."'/>";
+            echo "<input type='hidden' class='logintype' value='".$otpLogin."'/>";
+
+            ?>
+            <div class="md-block">
+                <div class="field">
+                    <button class="send_otp_login action primary" style="display: none;margin-top: 15px;" type="button"><?php echo __('Generate OTP');?></button>
+                </div>
+            </div>
+        <?php  } ?>
+
+        <?php /*code for OTP */ ?>
+
+        <div class="md-block">
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label is-upgraded">
+                <input class="mdl-textfield__input" name="login[password]" type="password" data-validate='{"required":true}' />
+                <label class="mdl-textfield__label"><?php echo __('Password') ?></label>
+            </div>
+        </div>
+        <div class="actions-toolbar">
+            <div class="primary">
+                <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" type="submit">
+                <?php echo __('Sign In') ?>
+                </button>
+            </div>
+            <div class="secondary"><a class="action remind" href="<?php echo $block->escapeUrl($block->getForgotPasswordUrl()) ?>"><span><?php echo __('Forgot Your Password?'); ?></span></a></div>
+        </div>
+    </form>
+</div>

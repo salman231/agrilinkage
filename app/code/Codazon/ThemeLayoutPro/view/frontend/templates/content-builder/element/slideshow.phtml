@@ -1,0 +1,57 @@
+<?php
+/**
+ * Copyright © 2017 Codazon, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+?>
+<?php
+$slider = $block->getData('slider_data');
+$slideItems = json_decode($slider->getData('items'), true);
+?>
+
+<?php if ($slideItems[0]['image']): ?>
+<?php
+$wrapClass = $slider->getData('class');
+$itemClass = $slider->getData('item_class');
+$settings = $slider->getData('settings');
+$title = $slider->getData('title');
+
+$item = new \Magento\Framework\DataObject();
+$widget = ['themewidgets' => [
+    'codazon.slideshow' => ['sliderConfig' => $block->getSlideshowSettings($slider)]
+]];
+$imgeHelper = $this->helper('Codazon\ThemeLayoutPro\Helper\Image');
+$mediaUrl = $block->getMediaUrl();
+$width = $slider->getData('width')?:1900;
+$height = $slider->getData('height')?:800;
+$paddingBottom = $height*100/$width;
+?>
+<div class="cdz-slideshow <?= $wrapClass ?> no-loaded" data-role="cdz-slideshow">
+    <div class="cdz-slideshow-outer abs-frame" style="padding-bottom: <?= $paddingBottom ?>%">
+        <div class="cdz-slideshow-inner abs-frame-inner">
+            <div class="items owl-carousel" data-mage-init='<?= json_encode($widget) ?>'>
+            <?php foreach ($slideItems as $itemData) : ?>
+                <?php $item->setData($itemData); ?>
+                <?php
+                    $image = $item->getData('image');
+                    $image = str_replace($mediaUrl, '', $this->filter($image));
+                    $image = $imgeHelper->init($image)->resize($width, $height);
+                    $desc = $item->getData('content');
+                ?>
+                <div class="item">
+                    <a class="item-image abs-img" style="padding-bottom: <?= $paddingBottom ?>%" href="<?= $item->getData('link') ?>">
+                        <img alt="" class="owl-lazy" data-src="<?= $image ?>" />
+                    </a>
+                    <?php if ($desc) : ?>
+                    <div class="item-desc">
+                        <?= $desc ?>
+                    </div>
+                    <?php endif ?>
+                </div>
+            <?php endforeach ?>
+            </div>
+            <div class="icon-loading"><span><span><?= __('Loading...') ?></span></span></div>
+        </div>
+    </div>
+</div>
+<?php endif ?>

@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2017 Codazon. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<theme_config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <themelayoutpro>
+            <general>
+                <enable_rtl>0</enable_rtl>
+            </general>
+			<header>
+				<header>header-style-01</header>
+				<left_menu>codazon-links-list</left_menu>
+                <left_menu_style>sidebar</left_menu_style>
+				<wishlist_style>sidebar</wishlist_style>
+                <mini_cart_style>sidebar</mini_cart_style>
+				<account_panel_style>sidebar</account_panel_style>
+			</header>
+            <footer>
+                <footer>footer-style-01</footer>
+            </footer>
+            <product_view>
+                <layout>catalog_product_view_style01</layout>
+                <moreview_style>vertical</moreview_style>
+                <moreview_margin>20</moreview_margin>
+                <enable_zoom_lens>1</enable_zoom_lens>
+                <lens_width>300</lens_width>
+                <lens_height>300</lens_height>
+                <display_social_links>1</display_social_links>
+                <relation_list_style></relation_list_style>
+            </product_view>
+            <category_view>
+                <layout></layout>
+            </category_view>
+            <image_size>
+                <product_base_image_width></product_base_image_width>
+                <product_base_image_height></product_base_image_height>
+                <product_moreview_image_width>110</product_moreview_image_width>
+                <product_moreview_image_height>110</product_moreview_image_height>
+                <product_listing_image_width></product_listing_image_width>
+                <product_listing_image_height></product_listing_image_height>
+                <product_cart_image_width></product_cart_image_width>
+                <product_cart_image_height></product_cart_image_height>
+                <category_image_width></category_image_width>
+                <category_image_height></category_image_height>
+                <blog_base_image_width></blog_base_image_width>
+                <blog_base_image_height></blog_base_image_height>
+                <blog_thumbnail_image_width></blog_thumbnail_image_width>
+                <blog_thumbnail_image_height></blog_thumbnail_image_height>
+            </image_size>
+            <env>
+                <enable_dev_mode>0</enable_dev_mode>
+            </env>
+		</themelayoutpro>
+	</default>
+</theme_config>

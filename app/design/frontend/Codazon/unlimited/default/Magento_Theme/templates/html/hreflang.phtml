@@ -1,0 +1,5 @@
+<?php 
+$urlInterface = \Magento\Framework\App\ObjectManager::getInstance()->get('Magento\Framework\UrlInterface');
+?>
+<link rel="alternate" href="<?= $urlInterface->getCurrentUrl();?>" hreflang="en-us" />
+<link rel="canonical" href="<?= $urlInterface->getCurrentUrl();?>"/>

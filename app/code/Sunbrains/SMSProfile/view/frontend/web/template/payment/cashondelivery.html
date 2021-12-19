@@ -1,0 +1,72 @@
+ <!-- 
+/**
+ * Sunbrains
+ * @category  Sunbrains
+ * @package   Sunbrains_SMSProfile
+ * @author    Sunbrains
+ */ 
+ -->
+<div class="payment-method" data-bind="css: {'_active': (getCode() == isChecked())}">
+    <div class="payment-method-title field choice">
+        <input type="radio"
+               name="payment[method]"
+               class="radio"
+               data-bind="attr: {'id': getCode()}, value: getCode(), checked: isChecked, click: selectPaymentMethod, visible: isRadioButtonVisible()"/>
+        <label data-bind="attr: {'for': getCode()}" class="label"><span data-bind="text: getTitle()"></span></label>
+    </div>
+
+    <div class="payment-method-content">
+        <!-- ko foreach: getRegion('messages') -->
+        <!-- ko template: getTemplate() --><!-- /ko -->
+        <!--/ko-->
+        <div class="payment-method-billing-address">
+            <!-- ko foreach: $parent.getRegion(getBillingAddressFormName()) -->
+            <!-- ko template: getTemplate() --><!-- /ko -->
+            <!--/ko-->
+        </div>
+        <p data-bind="html: getInstructions()"></p>
+        <div class="checkout-agreements-block">
+            <!-- ko foreach: $parent.getRegion('before-place-order') -->
+                <!-- ko template: getTemplate() --><!-- /ko -->
+            <!--/ko-->
+        </div>
+        <!-- ko if: (window.checkoutConfig.otpcod == 1) -->
+            <div class="field" style="margin-top: 15px;">    
+                <button class="send_otp_cod action primary"  type="button"><!-- ko i18n: 'Generate OTP' --><!-- /ko --></button>
+                <p style="font-size:10px;margin-top: 10px;"><!-- ko i18n: "Generate OTP should be sent on shipping address mobile number." --><!-- /ko --></p>
+                <input class="input-text verifiedotpcod"  type="hidden"   name="payment[codotp]" value="0" data-bind="hiddenInput: codotp,mageInit: {'mage/trim-input':{}}, attr: {'id': getCode()+'_codotp'}"  data-validate="{required:true}" />
+            </div>
+        <!-- /ko -->
+        <div class="actions-toolbar">
+            <div class="primary">
+                <!-- ko if: (window.checkoutConfig.otpcod == 1) -->
+                <button class="action primary checkout cod"
+                        type="submit"
+                        data-bind="
+                        click: placeOrder,
+                        attr: {title: $t('Place Order')},
+                        enable: (getCode() == isChecked()),
+                        css: {disabled: 'disabled'}
+                        "
+                        disabled>
+                    <span data-bind="i18n: 'Place Order'"></span>
+                </button>
+                <!-- /ko -->
+                <!-- ko if: (window.checkoutConfig.otpcod == 0) -->
+                <button class="action primary checkout cod"
+                        type="submit"                        
+                        data-bind="
+                        click: placeOrder,
+                        attr: {title: $t('Place Order')},
+                        enable: (getCode() == isChecked()),
+                        css: {disabled: !isPlaceOrderActionAllowed()}
+                        "
+                        disabled>
+                    <span data-bind="i18n: 'Place Order'"></span>
+                </button>
+                <!-- /ko -->
+            </div>
+        </div>
+
+    </div>
+</div>

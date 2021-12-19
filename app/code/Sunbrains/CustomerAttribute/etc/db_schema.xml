@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="marketplace_userdata" resource="default" engine="innodb" comment="Marketplace Product Table">
+        <column xsi:type="varchar" name="abis_number" length="50" comment="ABIS Number"/>
+        <column xsi:type="varchar" name="sagicor_bank_account_number" length="50" comment="Sagicor Bank Account Number"/>
+        <column xsi:type="text" name="what_do_you_sell" comment="What Do You Sell"/>
+        <column xsi:type="varchar" name="parish" length="50" comment="Parish"/>
+        <column xsi:type="varchar" name="broker" length="50" comment="AgriLinkages Broker"/>
+    </table>
+</schema>

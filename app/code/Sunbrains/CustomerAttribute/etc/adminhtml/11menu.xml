@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <remove id="Magento_Backend::system_tools" />
+        <remove id="Magento_Integration::system_extensions" />
+        <remove id="Magento_AsynchronousOperations::system_magento_logging" />
+        <remove id="Magento_Backend::system_convert" />
+        <remove id="Magento_Backend::system_other_settings" />
+        <remove id="Magento_Reports::report_marketing" />
+        <remove id="Magento_Analytics::business_intelligence" />
+        <remove id="Magento_Reports::report_salesroot_tax" />
+        <remove id="Magento_Reports::report_salesroot_coupons" />
+        <remove id="Magento_Paypal::report_salesroot_paypal_settlement_reports" />
+        <remove id="Magento_Braintree::settlement_report" />
+        <remove id="Magento_Reports::report_customers_orders" />
+        <remove id="Magento_Downloadable::report_products_downloads" />
+        <remove id="Magento_Reports::report_statistics" />
+        <remove id="Dotdigitalgroup_Email::marketing_automation_report" />
+        <remove id="Dotdigitalgroup_Email::marketing_automation" />
+        <remove id="Magento_Backend::content_elements" />
+        <remove id="Magento_Backend::system_design" />
+        <remove id="Magento_Backend::marketing_seo" />
+        <remove id="Magento_Newsletter::newsletter_template" />
+        <remove id="Magento_Newsletter::newsletter_queue" />
+        <remove id="Magento_Newsletter::newsletter_subscriber" />
+        <remove id="Magento_CatalogRule::promo" />
+        <remove id="Temando_Shipping::dispatches" />
+        <remove id="Temando_Shipping::batches" />
+        <remove id="Magento_Sales::sales_creditmemo" />
+        <remove id="Magento_Paypal::paypal_billing_agreement" />
+        <remove id="Magento_Marketplace::partners" />
+    </menu>
+</config>

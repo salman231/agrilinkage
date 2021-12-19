@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+ <!-- 
+/**
+ * Sunbrains
+ * Copyright (C) 2019 Sunbrains <info@sunbrains.com>
+ *
+ * @category Sunbrains
+ * @package Sunbrains_SMSNotification
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.sunbrains.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Sunbrains <info@sunbrains.com>
+ */ 
+ -->
+ 
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Email:etc/email_templates.xsd">
+    <template id="notification_template" label="Notification" file="notification.html" type="html" module="Sunbrains_SMSNotification" area="frontend"/>
+</config>

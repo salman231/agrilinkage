@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <!-- 
+/**
+ * Sunbrains
+ * @category  Sunbrains
+ * @package   Sunbrains_SMSProfile
+ * @author    Sunbrains
+ */ 
+ -->
+ 
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">smsprofiletemplates_form.smsprofiletemplates_form_data_source</item>
+        </item>
+        <item name="template" xsi:type="string">templates/form/collapsible</item>
+    </argument>
+    <settings>
+        <buttons>
+            <button name="back" class="Sunbrains\SMSProfile\Block\Adminhtml\SMSProfileTemplates\Edit\Buttons\Back"/>
+            <button name="reset" class="Sunbrains\SMSProfile\Block\Adminhtml\SMSProfileTemplates\Edit\Buttons\Reset"/>
+            <button name="save" class="Sunbrains\SMSProfile\Block\Adminhtml\SMSProfileTemplates\Edit\Buttons\Save"/>
+        </buttons>
+        <ajaxSaveType>simple</ajaxSaveType> 
+        <namespace>smsprofiletemplates_form</namespace>
+        <dataScope>data</dataScope>
+        <deps>
+            <dep>smsprofiletemplates_form.smsprofiletemplates_form_data_source</dep>
+        </deps>
+    </settings>
+    
+    <dataSource name="smsprofiletemplates_form_data_source">
+        <argument name="data" xsi:type="array">
+            <item name="js_config" xsi:type="array">
+                <item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+            </item>
+        </argument>
+        <settings>
+            <submitUrl path="smsprofile/smsprofiletemplates/save"/>
+        </settings>
+        <dataProvider class="Sunbrains\SMSProfile\Model\SMSProfileTemplates\DataProvider" name="smsprofiletemplates_form_data_source">
+            <settings>
+                <requestFieldName>entity_id</requestFieldName>
+                <primaryFieldName>entity_id</primaryFieldName>
+            </settings> 
+        </dataProvider>
+    </dataSource>
+    
+    <fieldset name="smsprofiletemplates">
+        <settings>
+            <collapsible>false</collapsible>
+            <label translate="true">OTP SMS Template Information</label>
+        </settings>
+
+        <field name="template_name" sortOrder="10" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">smsprofiletemplates</item>
+                </item>
+            </argument>
+            <settings>
+                <required>true</required>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+                <dataType>text</dataType>
+                <label translate="true">Template Name</label>
+                <dataScope>template_name</dataScope>
+                <componentType>field</componentType>
+                <visible>true</visible>
+                <notice> This field is only for admin use. </notice>
+            </settings>
+        </field>
+
+        <field name="event_type" sortOrder="20" formElement="select">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                   <item name="source" xsi:type="string">smsprofiletemplates</item> 
+                   <item name="formElement" xsi:type="string">select</item>
+                </item> 
+             </argument>
+
+            <settings>
+                <required>true</required>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+                <dataType>text</dataType>
+                <label translate="true">Event Type</label>
+                <dataScope>event_type</dataScope>
+                <componentType>field</componentType>
+            </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <options class="Sunbrains\SMSProfile\Model\Config\Source\SmsProfileEventOptions"/>
+                    </settings>
+                </select>
+            </formElements>
+        </field>
+        
+        <field name="template_content" sortOrder="30" formElement="textarea">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">smsprofiletemplates</item>
+                    <item name="formElement" xsi:type="string">textarea</item>
+                    <item name="tooltip" xsi:type="array">
+                        <item name="description" xsi:type="string">Max 918 characters allowed. Text may incurs credit charges for each 160 characters.
+                        </item>
+                    </item>
+                </item>
+            </argument>
+            <settings>
+                <required>true</required>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                    <rule name="max_text_length" xsi:type="number">918</rule>
+                </validation>
+                <dataType>text</dataType>
+                <label translate="true"> Template Content </label>
+                <dataScope>template_content</dataScope>
+                <componentType>field</componentType>
+                <notice> your otp is {otpCode} and it will expire in 10 min.Please do not share it with others. </notice>               
+            </settings>
+        </field>
+
+        <field name="store_id" sortOrder="40" formElement="multiselect">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">smsprofiletemplates</item>
+                    <item name="default" xsi:type="number">0</item>
+                </item>
+            </argument>
+            <settings>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+                <dataType>int</dataType>
+                <label translate="true">Store View</label>
+                <dataScope>store_id</dataScope>
+            </settings>
+            <formElements>
+                <multiselect>
+                    <settings>
+                        <options class="Magento\Cms\Ui\Component\Listing\Column\Cms\Options"/>
+                    </settings>
+                </multiselect>
+            </formElements>
+        </field>
+    </fieldset>
+</form>

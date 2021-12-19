@@ -1,0 +1,116 @@
+ .abs-clear-btn-default(){
+	padding: 0;
+	border: 0;
+	width: auto;
+	height: auto;
+	line-height: unset;
+	margin: 0;
+	min-width: auto;
+	border-radius: 0;
+	min-height: unset;	
+	background: transparent;
+	.abs-boxshadow(none);
+	&.md-focused{
+		&:not([disabled]){
+			background: transparent;
+			.abs-boxshadow(none);
+		}
+	}
+}
+.abs_header-icon-style(){
+	color: @header_hover_text;
+	width: 38px;
+	height: 38px;
+	line-height: 38px;	
+	margin-right: 5px;
+	text-align: center;
+	.abs-borderradius(100%);
+}
+.abs-header-button(){
+		text-align: center;
+		width: 123px;
+		height: 100px;				
+		text-align: center;
+		line-height: 100px;
+		background: @header_hover_text;				
+		.abs-borderradius(3px 3px 0 0);
+		display: block;
+		font-size: 0;
+		&:before{
+			.abs-iconfont("\f039" , 25px);
+			color:#ffffff;					
+			line-height: 100px;
+		}
+	}
+//----------------------------
+// Header search
+//----------------------------
+.fullboxElement(@position: ~'absolute') {
+	position: @position; width: 100%; height: 100%; left: 0; top: 0;
+	.rtl-layout &{
+		left: auto;
+		right: 0;
+	}
+}
+//----------------------------
+// Login forms
+//----------------------------
+.cdz-login-form(){
+	md-content{
+		background:@header_drop_background;
+	}	
+	md-input-container{
+		margin-top:10px;
+		.md-input{
+			padding:0;	
+			height:35px;
+			&:focus:not([disabled]){
+				.abs-boxshadow(none);
+			}
+		}
+		label:not(.md-no-float):not(.md-container-ignore) {
+			padding-left: 0;
+			.rtl-layout &{
+				width: auto;
+			}
+		}
+		.md-errors-spacer{display:none}
+		&.md-input-focused label:not(.md-no-float),
+		&.md-input-has-placeholder label:not(.md-no-float),
+		&.md-input-has-value label:not(.md-no-float){
+			.abs-transform(~'translate3d(0,6px,0) scale(.85)');
+		}
+	}
+	.actions-toolbar{
+		margin-top:25px !important;
+		.primary{
+			display:block;
+			width:100%;			
+		}
+		.primary button{
+			width:100%;					
+			font-size: 12px;
+			font-weight: 600;
+			margin: 0;
+			box-shadow: none;
+			&.md-focused{
+				&:not([disabled]){							
+					.abs-boxshadow(none);
+				}
+			}
+		}
+		.secondary{
+			width:100%;
+			text-align:center;
+			margin:5px 0 10px;				
+			font-size:14px;
+			a{
+				.abs-link(#9c9c9c, @header_drop_hover_text);
+				&:hover{
+					text-decoration:none;
+				}
+			}
+		}
+	}		
+}
+

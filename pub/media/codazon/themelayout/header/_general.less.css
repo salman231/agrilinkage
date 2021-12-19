@@ -1,0 +1,101 @@
+/* ============================================ *
+ * Codazon_Theme
+ * ============================================ */
+@import (less)'../_monitor.less.css';
+@import (less)'../_function.less.css';
+@import (less)'general/_function.less.css';
+@import (less)'general/_header-dropdown.less.css';
+@import (less)'general/_header-cart.less.css';
+@import (less)'general/_header-menu.less.css';
+@import (less)'general/_header-sidebar-menu.less.css';
+@import (less)'general/_header-responsive.less.css';
+@import (less)'general/_header-sticky.less.css';
+@import (less)'general/_header-popup.less.css';
+@import (less)'general/_header-searchsuiteautocomplete.less.css';
+@import (less)'general/_header-search.less.css';
+
+.page-header .header-panel-top {
+    position: relative;
+}
+
+.page-header{
+	.sticky-menu.active{
+		.nested{
+			display: none;
+		}
+	}
+	.switcher .options .action.toggle{
+		&.active:after,
+		&:after{
+			line-height: 18px;
+		}
+	}
+}
+/*Header checkout*/
+.checkout-index-index {
+	.page-wrapper{
+		background: transparent;
+		.page-header{
+			background: @header_background;
+			.logo{
+				margin: 0;
+			}
+		}
+		@media @phone{
+			.page-header{
+				background: @header_mobile_background;
+				.logo{
+					margin: 0;
+				}
+			}
+			
+		}
+		.action-auth-toggle,
+		.action-auth-toggle:hover{
+			color: @header_text;
+			border: 1px solid @header_text;
+		}
+	}
+}
+/*Checkout Cart Mobile*/
+.opc-estimated-wrapper{
+	/*Cart*/
+	.minicart-wrapper {
+		margin: 0;
+		.action.showcart{
+			position: relative;
+			padding: 5px;
+			color: @header_cart_text;
+			background-color: @header_cart_background;
+			border: 0;
+			&:before{
+				.abs-iconfont2('\e992', 26px);
+				color: @header_cart_icon;
+			}
+			&:hover{
+				color: @header_hover_text;
+				&:before{
+					color: @header_hover_text;
+				}
+			}
+			.cart-subtotal{
+				display: inline-block;
+				vertical-align: sub;
+				font-size: 14px;
+			}
+			.counter.qty{
+				height: 18px;
+				line-height: 18px;							
+				background-color: @header_cart_quality_background;
+				position: absolute;
+				top: -7px;
+				left: 25px;
+				.abs-borderradius(100%);
+				.rtl-layout &{
+					right: 25px;
+					left: auto;
+				}
+			}
+		}	
+	}
+}

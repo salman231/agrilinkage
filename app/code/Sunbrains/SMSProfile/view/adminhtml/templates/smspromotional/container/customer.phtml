@@ -1,0 +1,24 @@
+<?php
+/**
+ * Sunbrains
+ * @category  Sunbrains
+ * @package   Sunbrains_SMSProfile
+ * @author    Sunbrains
+ */
+ 
+$blockGrid = $block->getBlockGrid();
+$gridJsObjectName = $blockGrid->getJsObjectName();
+?>
+<label class="admin__field-label" />
+<div class="admin__field-control">	
+    <?php echo $block->getGridHtml(); ?>
+</div>
+<script>
+    require([ "jquery"], function($) {
+        $("input[name='selectedcustomer[]']").attr('form','smspromotional_form');      
+    });
+</script>
+<!-- @todo remove when "UI components" will support such initialization -->
+<script>
+     require('mage/apply/main').apply(); 
+</script>

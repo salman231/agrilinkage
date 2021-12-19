@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+ <!-- 
+/**
+ * Sunbrains
+ * @category  Sunbrains
+ * @package   Sunbrains_SMSProfile
+ * @author    Sunbrains
+ */
+ -->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">	
+    
+    <!-- override LoginPost controller -->
+    <preference for="Magento\Customer\Controller\Account\LoginPost" type="Sunbrains\SMSProfile\Controller\Account\LoginPost" />
+    
+    <!-- override ForgotPasswordPost controller -->
+    <preference for="Magento\Customer\Controller\Account\ForgotPasswordPost" type="Sunbrains\SMSProfile\Controller\Account\ForgotPasswordPost" />
+    
+    <!-- override block -->
+    <preference for="Magento\Customer\Block\Account\Dashboard\Info" type="Sunbrains\SMSProfile\Block\Account\Dashboard\Info" />
+
+    <!-- override Login controller for login in checkout page -->
+    <preference for="Magento\Customer\Controller\Ajax\Login" type="Sunbrains\SMSProfile\Controller\Ajax\Login" />
+
+    <type name="Magento\Checkout\Model\CompositeConfigProvider">
+        <arguments>
+            <argument name="configProviders" xsi:type="array">
+                <item name="smsprofile_configprovider" xsi:type="object">Sunbrains\SMSProfile\Model\SmsprofileConfigProvider</item>
+            </argument>
+        </arguments>
+    </type>
+</config>

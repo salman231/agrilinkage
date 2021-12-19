@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"  ?>
+<!--
+/**
+ * Sunbrains
+ * @category  Sunbrains
+ * @package   Sunbrains_SMSProfile
+ * @author    Sunbrains
+ */
+-->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="payment_method_assign_data_cashondelivery">
+        <observer name="vault_data_assigner" instance="Sunbrains\SMSProfile\Observer\CodValidationAssigner" />
+    </event>
+</config>

@@ -1,0 +1,54 @@
+<?php
+/**
+ * Copyright © 2017 Codazon, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+/** @var \Magento\Customer\Block\Form\Login $block */
+?>
+<?php
+/**
+ * Customer login form template
+ *
+ * @see \Magento\Customer\Block\Form\Login
+ * @var $block \Magento\Customer\Block\Form\Login
+ */
+?>
+<!-- login style default -->
+<div class="account-info-summary">
+    <div class="info-summary-top">
+        <div class="md-content">
+            <form name="loginForm" action="<?php echo $block->escapeUrl($block->getPostActionUrl()) ?>" method="post" data-mage-init='{"themewidgets":{"codazon.customValidation": {}}}'>
+                <?php echo $block->getBlockHtml('formkey'); ?>
+                <?= $this->getChildHtml('form_additional_info') ?>
+                <div class="md-block">
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label is-upgraded">
+                        <input class="mdl-textfield__input" type="text" name="login[username]" data-validate='{"required":true, "email":true}' />
+                        <label class="mdl-textfield__label"><?php echo __('Email') ?></label>
+                    </div>
+                </div>
+                <div class="md-block">
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label is-upgraded">
+                        <input class="mdl-textfield__input" name="login[password]" type="password" data-validate='{"required":true}' />
+                        <label class="mdl-textfield__label"><?php echo __('Password') ?></label>
+                    </div>
+                </div>
+                <div class="actions-toolbar">
+                    <div class="primary">
+                        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" type="submit">
+                        <?php echo __('Sign In') ?>
+                        </button>
+                    </div>
+                    <div class="secondary"><a class="action remind" href="<?php echo $block->escapeUrl($block->getForgotPasswordUrl()) ?>"><span><?php echo __('Forgot Your Password?'); ?></span></a></div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="info-summary-bottom">
+        <div class="md-content">
+            <p class="secondary"><span class="create-account-question"><?php echo __('New customer?') ?></span> <a class="create-account-link" href="<?php echo $block->getUrl('customer/account/create'); ?>"><?php echo __('Start Here.') ?></a></p>
+        </div>
+    </div>
+</div>

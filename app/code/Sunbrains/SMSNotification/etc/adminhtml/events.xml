@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+ <!-- 
+/**
+ * Sunbrains
+ * Copyright (C) 2019 Sunbrains <info@sunbrains.com>
+ *
+ * @category Sunbrains
+ * @package Sunbrains_SMSNotification
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.sunbrains.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Sunbrains <info@sunbrains.com>
+ */ 
+ -->
+ 
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+
+	<event name="sales_order_invoice_save_after">
+        <observer name="smsNotificationInvoice" instance="Sunbrains\SMSNotification\Observer\InvoicePay"/>
+    </event>
+
+    <event name="sales_order_creditmemo_save_after">
+        <observer name="smsNotificationCreditmemo" instance="Sunbrains\SMSNotification\Observer\CreditmemoRefund"/>
+    </event>
+
+    <event name="sales_order_shipment_save_after">
+        <observer name="smsNotificationShipment" instance="Sunbrains\SMSNotification\Observer\ShipmentSave"/>
+    </event>
+
+    <event name="order_cancel_after">
+        <observer name="adminOrderCancelSms" instance="Sunbrains\SMSNotification\Observer\OrderCancel" />
+    </event>
+
+    <event name="sales_order_shipment_track_save_after">
+        <observer name="adminOrderTrackSms" instance="Sunbrains\SMSNotification\Observer\ShipmentTrackSave"/>
+    </event>
+
+</config>	

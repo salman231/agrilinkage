@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2017 Codazon, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <remove src="Magefan_Blog::css/blog-m.css" />
+        <remove src="Magefan_Blog::css/blog-custom.css" />
+    </head>
+    <body>
+        <referenceContainer name="content">
+            <container name="product-static-text" htmlTag="div" htmlClass="product-static-text" label="Product View - Static Block" after="-" />
+            <block class="Codazon\ThemeLayoutPro\Block\ProductTabs" name="cdz-codazon-product-custom-tabs" />
+            <referenceBlock name="product.info.sku">
+                <arguments>
+                    <argument name="at_call" xsi:type="string">getGrade</argument>
+                    <argument name="at_code" xsi:type="string">grade</argument>
+                    <argument name="css_class" xsi:type="string">sku</argument>
+                    <argument name="at_label" xsi:type="string">default</argument>
+                    <argument name="add_attribute" xsi:type="string">itemprop="sku"</argument>
+                </arguments>
+            </referenceBlock>
+        </referenceContainer>
+
+    </body>
+</page>

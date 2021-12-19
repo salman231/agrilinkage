@@ -1,0 +1,110 @@
+<?xml version="1.0"?>
+ <!-- 
+/**
+ * Sunbrains
+ * @category  Sunbrains
+ * @package   Sunbrains_SMSProfile
+ * @author    Sunbrains
+ */ 
+ -->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+	
+  <!-- SMSProfileLog -->
+	  <virtualType name="SMSProfileLogGirdFilterPool" type="Magento\Framework\View\Element\UiComponent\DataProvider\FilterPool">
+        <arguments>
+           <argument name="appliers" xsi:type="array">
+               <item name="regular" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\RegularFilter</item>
+               <item name="fulltext" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\FulltextFilter</item>
+           </argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="SMSProfileLogGirdDataProvider" type="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider">
+        <arguments>
+            <argument name="collection" xsi:type="object" shared="false">Sunbrains\SMSProfile\Model\ResourceModel\SMSProfileLog\Collection</argument>
+            <argument name="filterPool" xsi:type="object" shared="false">SMSProfileLogGirdFilterPool</argument>
+        </arguments>
+    </virtualType>
+
+	  <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="smsprofilelog_listing_data_source" xsi:type="string">Sunbrains\SMSProfile\Model\ResourceModel\SMSProfileLog\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Sunbrains\SMSProfile\Model\ResourceModel\SMSProfileLog\Grid\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">sunbrains_smsprofilelog</argument>
+            <argument name="eventPrefix" xsi:type="string">smsprofilelog_collection</argument>
+            <argument name="eventObject" xsi:type="string">smsprofilelog_collection</argument>
+            <argument name="resourceModel" xsi:type="string">Sunbrains\SMSProfile\Model\ResourceModel\SMSProfileLog</argument>
+        </arguments>
+	  </type>
+
+  <!-- SMSProfileTemplates  -->
+    <virtualType name="SMSProfileTemplatesGirdFilterPool" type="Magento\Framework\View\Element\UiComponent\DataProvider\FilterPool">
+        <arguments>
+           <argument name="appliers" xsi:type="array">
+               <item name="regular" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\RegularFilter</item>
+               <item name="fulltext" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\FulltextFilter</item>
+           </argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="SMSProfileTemplatesGirdDataProvider" type="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider">
+        <arguments>
+            <argument name="collection" xsi:type="object" shared="false">Sunbrains\SMSProfile\Model\ResourceModel\SMSProfileTemplates\Collection</argument>
+            <argument name="filterPool" xsi:type="object" shared="false">SMSProfileTemplatesGirdFilterPool</argument>
+        </arguments>
+    </virtualType>
+
+
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="smsprofiletemplates_listing_data_source" xsi:type="string">Sunbrains\SMSProfile\Model\ResourceModel\SMSProfileTemplates\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type> 
+
+    <type name="Sunbrains\SMSProfile\Model\ResourceModel\SMSProfileTemplates\Grid\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">sunbrains_smsprofiletemplates</argument>
+            <argument name="eventPrefix" xsi:type="string">smsprofiletemplates_collection</argument>
+            <argument name="eventObject" xsi:type="string">smsprofiletemplates_collection</argument>
+            <argument name="resourceModel" xsi:type="string">Sunbrains\SMSProfile\Model\ResourceModel\SMSProfileTemplates</argument>
+        </arguments>
+    </type>
+
+
+    <!-- code for service contract -->
+    <preference for="Sunbrains\SMSProfile\Api\SMSProfileTemplatesRepositoryInterface" type="Sunbrains\SMSProfile\Model\SMSProfileTemplatesRepository"/>
+
+    <preference for="Sunbrains\SMSProfile\Api\Data\SMSProfileTemplatesInterface" type="Sunbrains\SMSProfile\Model\ResourceModel\SMSProfileTemplates"/>
+
+    <type name="Magento\Checkout\Block\Checkout\LayoutProcessor">
+        <plugin name="SMSNotification_checkout_layoutprocessor" disabled="true"/>
+        <plugin name="SmsProfile_checkout_layoutprocessor" type="Sunbrains\SMSProfile\Plugin\SMSProfileLayoutProcessor" sortOrder="105"/>
+    </type>
+
+    <!-- add console command to store previous store customer's phone in eav attribute -->
+    <type name="Magento\Framework\Console\CommandList">
+       <arguments>
+           <argument name="commands" xsi:type="array">
+               <item name="profilesavephone" xsi:type="object">Sunbrains\SMSProfile\Console\ProfileSavePhone</item>
+           </argument>
+       </arguments>
+   </type>
+
+  <!-- override model for allow login by mobile number -->
+   <type name="Magento\Customer\Model\AccountManagement">
+        <plugin name="SmsProfile_checkout_emailvalidate" type="Sunbrains\SMSProfile\Plugin\CustomerEmailValidatePlugin" sortOrder="105"/>
+  </type>
+
+  <!-- code for webapi -->
+  <preference for="Sunbrains\SMSProfile\Api\SMSProfieApiServicesInterface" type="Sunbrains\SMSProfile\Model\SMSProfieApiServices"/>
+  <!-- code for webapi -->
+</config>

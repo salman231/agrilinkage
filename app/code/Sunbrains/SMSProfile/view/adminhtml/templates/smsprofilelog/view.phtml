@@ -1,0 +1,29 @@
+<?php
+/**
+ * Sunbrains
+ * @category  Sunbrains
+ * @package   Sunbrains_SMSProfile
+ * @author    Sunbrains
+ */
+  
+$id = $this->getRequest()->getParam('entity_id');
+$sms = $block->getSMSProfileDetailsById($id);
+echo '<table width="100%" border="1">';
+foreach ($sms->getData() as $key => $value) {
+     echo "<tr>";
+     echo '<td class = "profilefieldname" >'.$key.'</td>';
+     echo '<td>'.$value.'</td>';
+     echo "</tr>";
+}
+echo '</table>';
+?>
+
+<style type="text/css">
+     th, td {
+          padding: 15px;
+     }
+     table, th, td {
+          border-collapse: collapse;
+     }
+     .profilefieldname { text-transform: capitalize; }
+</style>

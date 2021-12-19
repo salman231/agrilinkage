@@ -1,0 +1,117 @@
+<?xml version="1.0"?>
+ <!-- 
+/**
+ * Sunbrains
+ * Copyright (C) 2019 Sunbrains <info@sunbrains.com>
+ *
+ * @category Sunbrains
+ * @package Sunbrains_SMSNotification
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.sunbrains.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Sunbrains <info@sunbrains.com>
+ */ 
+ -->
+ 
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+	
+   <!-- plugin for  Order After Save -->
+	<type name="Magento\Sales\Api\OrderRepositoryInterface">
+    	<plugin name="OrderAfterSaveSMS" type="Sunbrains\SMSNotification\Plugin\SmsOrderAfterSave" sortOrder="20" disabled="false" />
+	</type> 
+
+  <!-- plugin for  contact After Post -->
+  <type  name="Magento\Contact\Controller\Index\Post">
+    <plugin name="ContactSMS" sortOrder="1"  disabled="false"
+           type="Sunbrains\SMSNotification\Plugin\ContactPostPlugin"/>
+  </type>  
+
+  <!-- plugin for  customer create account After Post -->
+  <type  name="Magento\Customer\Controller\Account\CreatePost">
+    <plugin name="RegisterationSMS" sortOrder="1"  disabled="false"
+           type="Sunbrains\SMSNotification\Plugin\CreatePostPlugin"/>
+  </type>
+ 
+  <type name="Magento\Checkout\Block\Checkout\LayoutProcessor">
+        <plugin name="SMSNotification_checkout_layoutprocessor" type="Sunbrains\SMSNotification\Plugin\LayoutProcessor" sortOrder="100"/>
+    </type> 
+ 
+  <!-- SMSLog -->
+	  <virtualType name="SMSLogGirdFilterPool" type="Magento\Framework\View\Element\UiComponent\DataProvider\FilterPool">
+        <arguments>
+           <argument name="appliers" xsi:type="array">
+               <item name="regular" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\RegularFilter</item>
+               <item name="fulltext" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\FulltextFilter</item>
+           </argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="SMSLogGirdDataProvider" type="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider">
+        <arguments>
+            <argument name="collection" xsi:type="object" shared="false">Sunbrains\SMSNotification\Model\ResourceModel\SMSLog\Collection</argument>
+            <argument name="filterPool" xsi:type="object" shared="false">SMSLogGirdFilterPool</argument>
+        </arguments>
+    </virtualType>
+
+	  <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="smslog_listing_data_source" xsi:type="string">Sunbrains\SMSNotification\Model\ResourceModel\SMSLog\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Sunbrains\SMSNotification\Model\ResourceModel\SMSLog\Grid\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">sunbrains_smslog</argument>
+            <argument name="eventPrefix" xsi:type="string">smslog_collection</argument>
+            <argument name="eventObject" xsi:type="string">smslog_collection</argument>
+            <argument name="resourceModel" xsi:type="string">Sunbrains\SMSNotification\Model\ResourceModel\SMSLog</argument>
+        </arguments>
+	  </type>
+
+  <!-- SMSTemplates  -->
+    <virtualType name="SMSTemplatesGirdFilterPool" type="Magento\Framework\View\Element\UiComponent\DataProvider\FilterPool">
+        <arguments>
+           <argument name="appliers" xsi:type="array">
+               <item name="regular" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\RegularFilter</item>
+               <item name="fulltext" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\FulltextFilter</item>
+           </argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="SMSTemplatesGirdDataProvider" type="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider">
+        <arguments>
+            <argument name="collection" xsi:type="object" shared="false">Sunbrains\SMSNotification\Model\ResourceModel\SMSTemplates\Collection</argument>
+            <argument name="filterPool" xsi:type="object" shared="false">SMSTemplatesGirdFilterPool</argument>
+        </arguments>
+    </virtualType>
+
+
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="smstemplates_listing_data_source" xsi:type="string">Sunbrains\SMSNotification\Model\ResourceModel\SMSTemplates\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type> 
+
+    <type name="Sunbrains\SMSNotification\Model\ResourceModel\SMSTemplates\Grid\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">sunbrains_smstemplates</argument>
+            <argument name="eventPrefix" xsi:type="string">smstemplates_collection</argument>
+            <argument name="eventObject" xsi:type="string">smstemplates_collection</argument>
+            <argument name="resourceModel" xsi:type="string">Sunbrains\SMSNotification\Model\ResourceModel\SMSTemplates</argument>
+        </arguments>
+    </type>
+
+
+    <!-- code for service contract -->
+    <preference for="Sunbrains\SMSNotification\Api\SMSTemplatesRepositoryInterface" type="Sunbrains\SMSNotification\Model\SMSTemplatesRepository"/>
+
+    <preference for="Sunbrains\SMSNotification\Api\Data\SMSTemplatesInterface" type="Sunbrains\SMSNotification\Model\ResourceModel\SMSTemplates"/>
+
+    <type name="Sunbrains\SMSNotification\Helper\Data">
+        <plugin name="sunbrains_smsnotification_helper_checklicense" type="Sunbrains\SMSNotification\Plugin\Helper\Data"/>
+    </type>
+    
+</config>	

@@ -1,0 +1,80 @@
+<?xml version="1.0"?>
+ <!-- 
+/**
+ * Sunbrains
+ * @category  Sunbrains
+ * @package   Sunbrains_SMSProfile
+ * @author    Sunbrains
+ */ 
+ -->
+ 
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Webapi:etc/webapi.xsd"> 
+    
+    <!-- Send / resend  OTP -->       
+    <route method="POST" url="/V1/sendotp">
+        <service class="Sunbrains\SMSProfile\Api\SMSProfieApiServicesInterface" method="SendOtpToCustomer"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+
+    <!-- Customer login  with OTP Only -->
+    <route method="POST" url="/V1/customertoken">
+        <service class="Sunbrains\SMSProfile\Api\SMSProfieApiServicesInterface" method="createCustomerTokenWithOtp"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+
+    <!-- Customer login  with OTP and Passeord-->
+    <route method="POST" url="/V1/customertokenwithotpandpassword">
+        <service class="Sunbrains\SMSProfile\Api\SMSProfieApiServicesInterface" method="createCustomerTokenWithOtpPassword"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+
+    <!-- Customer account create  with OTP -->
+    <route method="POST" url="/V1/customersignupwithotp">
+        <service class="Sunbrains\SMSProfile\Api\SMSProfieApiServicesInterface" method="createAccountWithOtp"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+
+    <!-- Customer account edit  with OTP -->
+    <route method="POST" url="/V1/customereditwithotp">
+        <service class="Sunbrains\SMSProfile\Api\SMSProfieApiServicesInterface" method="updateAccountWithOtp"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+
+    <!-- Send reset password link in mail with OTP -->
+    <route method="POST" url="/V1/passwordwithotp">
+        <service class="Sunbrains\SMSProfile\Api\SMSProfieApiServicesInterface" method="initiatePasswordResetWithOTP"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+
+    <!-- Guest place order with payment information saving for COD -->
+    <route method="POST" url="/V1/guestcheckoutwithotpforcod/:cartId">
+        <service class="Sunbrains\SMSProfile\Api\SMSProfieApiServicesInterface" method="savePaymentInformationAndPlaceOrderWithOtp"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+
+    <!-- My place order with payment information saving -->
+    <route url="/V1/carts/mine/checkoutwithotpforcod" method="POST">
+        <service class="Sunbrains\SMSProfile\Api\SMSProfieApiServicesInterface" method="savePaymentInformationAndPlaceOrderWithOtpForUser"/>
+        <resources>
+            <resource ref="self" />
+        </resources>
+        <data>
+            <parameter name="cartId" force="true">%cart_id%</parameter>
+        </data>
+    </route>
+
+</routes>

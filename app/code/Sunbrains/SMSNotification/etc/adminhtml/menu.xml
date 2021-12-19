@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+ <!-- 
+/**
+ * Sunbrains
+ * Copyright (C) 2019 Sunbrains <info@sunbrains.com>
+ *
+ * @category Sunbrains
+ * @package Sunbrains_SMSNotification
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.sunbrains.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Sunbrains <info@sunbrains.com>
+ */ 
+ -->
+ 
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+	<menu>
+		<add id="Sunbrains_SMSNotification::smsnotification"
+			 title="Sunbrains Sms Notification"
+			 module="Sunbrains_SMSNotification"
+			 sortOrder="50"
+			 resource="Sunbrains_SMSNotification::smsnotification"/>
+
+
+		<add id="Sunbrains_SMSNotification::smsnotifications"
+			 title="Sms Notification" 
+			 module="Sunbrains_SMSNotification"
+			 sortOrder="9"
+			 parent="Sunbrains_SMSNotification::smsnotification"
+			 resource="Sunbrains_SMSNotification::smsnotifications"/>
+
+		 
+     	<add id="Sunbrains_SMSNotification::smstemplates"
+     	 title="SMS Templates" 
+     	 module="Sunbrains_SMSNotification"
+     	 sortOrder="10" 
+     	 action="smsnotification/smstemplates/index" 
+     	 resource="Sunbrains_SMSNotification::smstemplates"
+     	 parent="Sunbrains_SMSNotification::smsnotifications"/>
+
+    	<add id="Sunbrains_SMSNotification::smslog"
+    		title="SMS Log" 
+    		module="Sunbrains_SMSNotification"
+    		sortOrder="11" 
+    		action="smsnotification/smslog/index" 
+    		resource="Sunbrains_SMSNotification::smslog"
+    		parent="Sunbrains_SMSNotification::smsnotifications"
+    		dependsOnConfig="sunbrainssmsnotification/smslog/enable"/>
+    			
+	 	<add id="Sunbrains_SMSNotification::smsconfiguration"
+	 		title="Configuration" 
+	 		module="Sunbrains_SMSNotification"
+	 		sortOrder="12" 
+	 		parent="Sunbrains_SMSNotification::smsnotifications"
+	 		action="adminhtml/system_config/edit/section/sunbrainssmsnotification"
+	 		resource="Sunbrains_SMSNotification::smsconfiguration"/>
+	</menu>	
+
+</config>

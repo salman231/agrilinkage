@@ -1,0 +1,11 @@
+{
+    "marketplace_userdata": {
+        "column": {
+            "abis_number": true,
+            "sagicor_bank_account_number": true,
+            "what_do_you_sell": true,
+            "parish": true,
+            "broker": true
+        }
+    }
+}

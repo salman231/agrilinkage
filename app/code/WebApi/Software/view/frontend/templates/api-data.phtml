@@ -1,0 +1,60 @@
+<?php $dataApi = $block->getAllCommodityRetailPrices();
+	
+?>
+<?php if($dataApi && $block->isModuleEnabled()):?>
+<div id="table-wrapper" class="container space-lg">
+	<div class="cdz-block-title">
+	<p class="b-title h2"><span>Current Prices at Local Prices Points for Week Ending</span></p>
+	</div>
+  <div class="api-data-table">
+	<table id="api-data-table">
+		<thead>
+			<tr>
+				<th scope="col" class="col Commodity">Commodity</th>
+				<th scope="col" class="col CollectedPrice">CollectedPrice</th>
+				<th scope="col" class="col UnitOfMeasure">UnitOfMeasure</th>
+				<th scope="col" class="col PricePoint">PricePoint</th>
+				<th scope="col" class="col ExtArea">ExtArea</th>
+				<th scope="col" class="col Parish">Parish</th>
+				<th scope="col" class="col PriceSource">PriceSource</th>
+				<th scope="col" class="col Grade">Grade</th>
+				<th scope="col" class="col Variety">Variety</th>
+				
+			</tr>
+		</thead>
+		<tbody>
+			<?php foreach ($dataApi as $key => $data): ?>
+				<tr>
+					<td data-th="Commodity" class="col Commodity"><?php echo $data['Commodity']; ?></td>
+					<td data-th="CollectedPrice" class="col CollectedPrice"><?php echo $data['CollectedPrice'] ?></td>
+					<td data-th="UnitOfMeasure" class="col UnitOfMeasure"><?php echo $data['UnitOfMeasure'] ?></td>
+					<td data-th="PricePoint" class="col PricePoint"><?php echo $data['PricePoint'] ?></td>
+					<td data-th="ExtArea" class="col ExtArea"><?php echo $data['ExtArea'] ?></td>
+					<td data-th="Parish" class="col Parish"><?php echo $data['Parish'] ?></td>
+					<td data-th="PriceSource" class="col PriceSource"><?php echo $data['PriceSource'] ?></td>
+					<td data-th="Grade" class="col Grade"><?php echo $data['Grade'] ?></td>
+					<td data-th="Variety" class="col Variety"><?php echo $data['Variety'] ?></td>
+				</tr>
+			<?php endforeach; ?>
+		</tbody>
+	</table>
+  </div>
+</div>
+<?php endif;?>
+<style>
+#table-wrapper {
+  position:relative;
+  margin-bottom: 45px;
+}
+.api-data-table {
+  overflow: auto;
+  height: 450px;
+}
+
+.api-data-table thead th {
+  position: sticky;
+  top: 0;
+}
+table { border-collapse: collapse; width: 100%; }
+th, td { background: #fff; padding: 8px 16px; }
+</style>

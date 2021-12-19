@@ -1,0 +1,405 @@
+<?xml version="1.0"?>
+<!--
+/**
+* Sunbrains
+* Copyright (C) 2019 Sunbrains <info@sunbrains.com>
+*
+* @category  Sunbrains
+* @package   Sunbrains_SMSProfile
+* @copyright Copyright (c) 2019 Mage Delight (http://www.sunbrains.com/)
+* @license   http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+* @author    Sunbrains <info@sunbrains.com>
+*/
+-->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="sunbrains" translate="label" sortOrder="10">
+            <label>Sunbrains</label>
+        </tab>
+        <section id="sunbrainssmsprofile" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+            <class>separator-top</class>
+            <label>SMS Profile</label>
+            <tab>sunbrains</tab>
+            <resource>Sunbrains_SMSProfile::config_root</resource>
+            <!-- SECTION_GROUP_LICENSE -->
+            <!--<group id="license" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>License Configuration</label>
+                <field id="serial_key" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Serial Key</label>
+                    <comment><![CDATA[Enter the serial key that you received at time of purchase.]]></comment>
+                </field>
+                <field id="activation_key" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Activation Key</label>
+                    <comment><![CDATA[Enter the activation key that you received at time of purchase.]]></comment>
+                </field>
+            </group>-->
+            <!-- SECTION_GROUP_LICENSE -->
+            <group id="general" translate="label" type="text" sortOrder="90" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>General Configuration</label>
+                <!-- SECTION_FIELD_SELECT_WEBSITE -->
+                <!--<field id="select_website" translate="label" type="multiselect" sortOrder="0" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Select Website</label>
+                    <source_model>Sunbrains\SMSProfile\Model\Config\Source\Website</source_model>
+                    <comment>Please save serial and activation keys to get the available options.</comment>
+                </field>-->
+                <!-- SECTION_FIELD_SELECT_WEBSITE -->
+                <field id="enable" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1"  >
+                    <label>Enable Mobile OTP Login</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+
+                <field id="api_gateway" translate="label" type="select" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1" >
+                    <label>SMS API Gateway</label>
+                    <source_model>Sunbrains\SMSProfile\Model\Config\Source\SMSProfileListApi</source_model>
+                    <depends> <field id="enable">1</field> </depends>
+                </field>
+
+                <field id="account_sid" translate="label" type="text" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Account SID</label>
+                    <comment>You can get SID by login in https://www.twilio.com </comment>
+                    <validate>required-entry</validate>
+                    <depends>
+                        <field id="enable">1</field>
+                        <field id="api_gateway">Twilio Api Service</field>
+                    </depends>
+                </field>
+
+                <field id="auth_token" translate="label" type="obscure" sortOrder="4" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Auth Token</label>
+                    <backend_model>Magento\Config\Model\Config\Backend\Encrypted</backend_model>
+                    <depends>
+                        <field id="enable">1</field>
+                        <field id="api_gateway">Twilio Api Service</field>
+                    </depends>
+                    <validate>required-entry</validate>
+                </field>
+
+                <field id="twilio_phone" translate="label" type="text" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Twilio Phone Number</label>
+                    <comment>Please enter twilio phone number which you have purchased. eg: +123XXXXXXX</comment>
+                    <validate>required-entry</validate>
+                    <depends>
+                        <field id="enable">1</field>
+                        <field id="api_gateway">Twilio Api Service</field>
+                    </depends>
+                </field>
+
+                <field id="twilio_service_id" translate="label" type="text" sortOrder="6" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Twilio Service Id</label>
+                    <comment>Enter twilio service id which you have configured for notification service. Eg: ISXXXXXXX</comment>
+                    <validate>required-entry</validate>
+                    <depends>
+                        <field id="enable">1</field>
+                        <field id="api_gateway">Twilio Api Service</field>
+                    </depends>
+                </field>
+
+                <field id="api_url" translate="label" type="text" sortOrder="7" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>API URL</label>
+                    <comment>Enter API url that is being used by your SMS service provider. </comment>
+                    <validate>required-entry</validate>
+                    <depends>
+                        <field id="enable">1</field>
+                        <field id="api_gateway">Other</field>
+                    </depends>
+                </field>
+
+                <field id="api_credential" translate="label" type="text" sortOrder="8" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>API Credentials</label>
+                    <comment>Eg: username:test,password:test123  </comment>
+                    <validate>required-entry</validate>
+                    <depends>
+                        <field id="enable">1</field>
+                        <field id="api_gateway">Other</field>
+                    </depends>
+                </field>
+
+                <field id="api_to" translate="label" type="text" sortOrder="9" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Key Name For "Send To" </label>
+                    <comment>Specify key which should be used for "Send To" parameter. Eg: To, mobiles, msisdn </comment>
+                    <validate>required-entry</validate>
+                    <depends>
+                        <field id="enable">1</field>
+                        <field id="api_gateway">Other</field>
+                    </depends>
+                </field>
+
+                <field id="api_message" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Key Name For "Send SMS Body" </label>
+                    <comment> Specify key which should be used for "Send SMS" parameter. Eg: body, message, msg  </comment>
+                    <validate>required-entry</validate>
+                    <depends>
+                        <field id="enable">1</field>
+                        <field id="api_gateway">Other</field>
+                    </depends>
+                </field>
+
+                <field id="api_get_request" translate="label" type="select" sortOrder="11" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>API request in GET ? </label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <validate>required-entry</validate>
+                    <depends>
+                        <field id="enable">1</field>
+                        <field id="api_gateway">Other</field>
+                    </depends>
+                </field>
+
+                <field id="api_xml" translate="label" type="select" sortOrder="12" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>API Request/Response in XML ?</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+                        <field id="enable">1</field>
+                        <field id="api_gateway">Other</field>
+                    </depends>
+                </field>
+
+                <field id="api_country" translate="label" type="select" sortOrder="13" showInDefault="1" showInWebsite="1" showInStore="1" >
+                    <label>Add Country Code To Mobile Number </label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Specify if country code is required or not in user's mobile number.</comment>
+                    <depends>
+                        <field id="enable">1</field>
+                        <field id="api_gateway">Other</field>
+                    </depends>
+                </field>
+
+                <field id="api_params" translate="label" type="textarea" sortOrder="14" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>API Additional Parameters</label>
+                    <comment>To enter params use given format: key1:value1,key2:value2,key3:value3 </comment>
+                    <!-- <validate>required-entry</validate> -->
+                    <depends>
+                        <field id="enable">1</field>
+                        <field id="api_gateway">Other</field>
+                    </depends>
+                </field>
+
+                <field id="api_updateparams" translate="label" type="textarea" sortOrder="15" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>API Additional Parameters TO Update For Promotional Route</label>
+                    <comment>Specify additional params that is being updated/removed by your SMS provider. To remove any parameter use key1:false and to update use key1:value1,key2:value2,key3:value3 </comment>
+
+                    <depends>
+                        <field id="enable">1</field>
+                        <field id="api_gateway">Other</field>
+                    </depends>
+                </field>
+
+                <field id="api_url_promotional" translate="label" type="text" sortOrder="16" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>API Url For Promotional Route</label>
+                    <comment>Specify url to send Promotional SMS. Skip this if same API URL is being used to send promotional SMS.</comment>
+                    <depends>
+                        <field id="enable">1</field>
+                        <field id="api_gateway">Other</field>
+                    </depends>
+                </field>
+
+                <field id="api_url_status" translate="label" type="text" sortOrder="17" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>API URL To Fetch SMS Status</label>
+                    <comment>Enter API url used to update status in SMS log. Please use {msid} for message id eg: http://test.com/{msid}  </comment>
+                    <depends>
+                        <field id="enable">1</field>
+                        <field id="api_gateway">Other</field>
+                    </depends>
+                </field>
+
+                <field id="process_status" translate="label" type="text" sortOrder="18" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Processing Status Label Of SMS</label>
+                    <comment>Enter SMS status(s) which needs to be updated via cronjob. For eg. queued, pending, sent etc.</comment>
+                    <depends>
+                        <field id="enable">1</field>
+                        <field id="api_gateway">Other</field>
+                    </depends>
+                </field>
+
+                <field id="fail_status" translate="label" type="text" sortOrder="19" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Failed Label Of SMS</label>
+                    <comment>Enter SMS status for failure. You can add multiple status with comma separated. Eg: undelivered,DND,fail </comment>
+                    <depends>
+                        <field id="enable">1</field>
+                        <field id="api_gateway">Other</field>
+                    </depends>
+                </field>
+
+                <field id="error_key" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Key Name For Error Message</label>
+                    <comment>Enter key parameter that contains error message of SMS provider json response. For e.g : error,Error,error_message </comment>
+                    <depends>
+                        <field id="enable">1</field>
+                        <field id="api_gateway">Other</field>
+                    </depends>
+                </field>
+
+                <field id="delivery_note" translate="label" type="label" sortOrder="21" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>NOTE: </label>
+                    <comment><model>Sunbrains\SMSProfile\Model\Config\Source\SmsProfileComment</model></comment>
+                    <depends>
+                        <field id="enable">1</field>
+                        <field id="api_gateway">Other</field>
+                    </depends>
+                </field>
+
+                <field id="default_country" translate="label" type="select" sortOrder="25" showInDefault="1" showInWebsite="1" showInStore="1" >
+                    <label>Default Country</label>
+                    <source_model>Sunbrains\SMSProfile\Model\Config\Source\SMSProfileCountryCode</source_model>
+                    <depends> <field id="enable">1</field> </depends>
+                </field>
+            </group>
+
+            <group id="failurenotification" translate="label" type="text" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="1">
+
+                <label>Admin Failure Notification Configuration</label>
+                <depends> <field id="sunbrainssmsprofile/general/enable">1</field> </depends>
+
+                <field id="enable" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1" >
+                    <label>Failure Notification Email To Admin</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+
+                <field id="notifytomail" translate="label" type="text" sortOrder="2"    showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Notification To Email</label>
+                    <comment>Enter email addresses comma separated.</comment>
+                    <validate>required-entry validate-comma-separated-emails-profile</validate>
+                    <depends>
+                        <field id="sunbrainssmsprofile/general/enable">1</field>
+                        <field id="enable">1</field>
+                    </depends>
+                </field>
+
+                <field id="notifymailsender" translate="label" type="select" sortOrder="3"    showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Email Sender</label>
+                    <source_model>Magento\Config\Model\Config\Source\Email\Identity</source_model>
+                    <depends>
+                        <field id="sunbrainssmsprofile/general/enable">1</field>
+                        <field id="enable">1</field>
+                    </depends>
+                </field>
+            </group>
+
+            <group id="otpsetting" translate="label" type="text" sortOrder="101" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Customer Phone And OTP Configuration</label>
+                <depends> <field id="sunbrainssmsprofile/general/enable">1</field> </depends>
+
+                <field id="required_phone" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Phone Number Required On SignUp Page</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+
+                <field id="otp_login" translate="label" type="select" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Login Options</label>
+                    <source_model>Sunbrains\SMSProfile\Model\Config\Source\LoginOptions</source_model>
+                    <comment>These options are for login page and login from checkout page.</comment>
+                </field>
+
+                <field id="otp_cod" translate="label" type="select" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Send OTP During Checkout For COD Payment Method</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>If yes, then system sends otp to shipping address's telephone number. </comment>
+                </field>
+
+                <field id="otp_format" translate="label" type="select" sortOrder="4" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>OTP Format</label>
+                    <source_model>Sunbrains\SMSProfile\Model\Config\Source\SmsProfileOtpFormat</source_model>
+                </field>
+
+                <field id="otp_length" translate="label" type="text" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>OTP Length</label>
+                    <validate>required-entry validate-digits</validate>
+                    <comment> e.g: 4,6,8.</comment>
+                    <depends>
+                        <field id="sunbrainssmsprofile/general/enable">1</field>
+                    </depends>
+                </field>
+
+                <field id="otp_expiry" translate="label" type="text" sortOrder="6" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Time For OTP Expiry</label>
+                    <comment>Add time in minute here.  eg: 10 </comment>
+                    <validate>required-entry validate-digits</validate>
+                    <depends>
+                        <field id="sunbrainssmsprofile/general/enable">1</field>
+                    </depends>
+                </field>
+
+                <field id="phone_max" translate="label" type="text" sortOrder="7" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Phone Number Maximum Length</label>
+                    <comment>eg: 10</comment>
+                    <validate>required-entry validate-digits</validate>
+                    <depends>
+                        <field id="sunbrainssmsprofile/general/enable">1</field>
+                    </depends>
+                </field>
+
+                <field id="phone_min" translate="label" type="text" sortOrder="8" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Phone Number Minimum Length</label>
+                    <comment>eg: 10</comment>
+                    <validate>required-entry validate-digits</validate>
+                    <depends>
+                        <field id="sunbrainssmsprofile/general/enable">1</field>
+                    </depends>
+                </field>
+
+                <field id="phone_note" translate="label" type="text" sortOrder="9" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Comment Shows Below Telephone Field</label>
+
+                    <comment> Enter comment to display on front end. Eg: Please add number without 0 and country code. </comment>
+                    <validate>required-entry</validate>
+                    <depends>
+                        <field id="sunbrainssmsprofile/general/enable">1</field>
+                    </depends>
+                </field>
+
+                <field id="phone_eav" translate="label" type="select" sortOrder="10" showInDefault="1">
+                    <label>Select Address To Get Phone Number To Map With Existing Customer Profile</label>
+                    <source_model>Sunbrains\SMSProfile\Model\Config\Source\SMSProfileListAddressOptions</source_model>
+                    <comment>Please run the command "php bin/magento smsprofile:savephone" to save customer's phone based on above selected  option. </comment>
+
+                </field>
+
+            </group>
+
+            <group id="smsprofilelog" translate="label" type="text" sortOrder="102" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>SMS Log Setting</label>
+                <field id="enable" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1" >
+                    <label>Enable SMS Log</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>If yes, then SMS logs are inserted in database.</comment>
+                </field>
+
+                <field id="cron_timeout" translate="label" type="text" sortOrder="2" showInDefault="1" >
+                    <label>Cron Timeout To Update SMS Status</label>
+                    <validate>required-entry validate-digits </validate>
+                    <comment>Add seconds here eg: 60,300,600</comment>
+                    <depends>
+                        <field id="enable">1</field>
+                        <field id="sunbrainssmsprofile/general/enable">1</field>
+                    </depends>
+                </field>
+
+                <field id="cron_enable" translate="label" type="select" sortOrder="3" showInDefault="1" >
+                    <label>Enable Cron To Clear SMS Log</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends> <field id="enable">1</field> </depends>
+                </field>
+
+                <field id="cron_frequency" translate="label" type="select" showInDefault="1"  sortOrder="4">
+                    <label>Frequency</label>
+                    <source_model>Magento\Cron\Model\Config\Source\Frequency</source_model>
+                    <backend_model>Sunbrains\SMSProfile\Model\Config\Cron\SMSProfileConfig</backend_model>
+                    <depends>
+                        <field id="enable">1</field>
+                        <field id="cron_enable">1</field>
+                    </depends>
+                </field>
+
+                <field id="time" translate="label" type="time" showInDefault="1" sortOrder="5">
+                    <label>Time</label>
+                    <depends>
+                        <field id="enable">1</field>
+                        <field id="cron_enable">1</field>
+                    </depends>
+                </field>
+
+                <depends> <field id="sunbrainssmsprofile/general/enable">1</field> </depends>
+            </group>
+        </section>
+    </system>
+</config>

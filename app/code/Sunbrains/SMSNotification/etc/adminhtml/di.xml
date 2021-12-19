@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+ <!-- 
+/**
+ * Sunbrains
+ * Copyright (C) 2019 Sunbrains <info@sunbrains.com>
+ *
+ * @category Sunbrains
+ * @package Sunbrains_SMSNotification
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.sunbrains.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Sunbrains <info@sunbrains.com>
+ */ 
+ -->
+ 
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+     <virtualType name="SMSTemplatesFormModifierPool" type="Magento\Ui\DataProvider\Modifier\Pool">
+        <arguments>
+            <argument name="modifiers" xsi:type="array">
+                <item name="smstemplates_data" xsi:type="array">
+                    <item name="class" xsi:type="string">Sunbrains\SMSNotification\Ui\DataProvider\SMSTemplates\Form\Modifier\SMSTemplatesData</item>
+                    <item name="sortOrder" xsi:type="number">10</item>
+                </item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <type name="Sunbrains\SMSNotification\Model\SMSTemplates\DataProvider">
+        <arguments>
+            <argument name="pool" xsi:type="object">SMSTemplatesFormModifierPool</argument>
+        </arguments>
+</type>
+</config>	

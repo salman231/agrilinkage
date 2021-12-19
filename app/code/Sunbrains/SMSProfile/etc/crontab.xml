@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+ <!-- 
+/**
+ * Sunbrains
+ * @category  Sunbrains
+ * @package   Sunbrains_SMSProfile
+ * @author    Sunbrains
+ */
+ -->
+ 
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Cron:etc/crontab.xsd">
+    <group id="default">
+        <job name="smsprofilelog_clear" instance="Sunbrains\SMSProfile\Cron\SmsProfileClearLog" method="execute">
+            <config_path>crontab/default/jobs/smsprofilelog_clear/schedule/cron_expr</config_path>
+        </job>
+
+        <job name="change_smsprofile_status" instance="Sunbrains\SMSProfile\Cron\ChangeSmsStatus" method="execute">
+            <schedule>*/5 * * * *</schedule>
+        </job>
+    </group>
+</config>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"  ?>
+<!--
+/**
+ * Sunbrains
+ * @category  Sunbrains
+ * @package   Sunbrains_SMSProfile
+ * @author    Sunbrains
+ */
+-->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">    
+    <event name="sales_order_place_before">
+       <observer name="sunbrains_smsprofile_order_place" instance="Sunbrains\SMSProfile\Observer\OrderPlacebefore" />
+    </event>
+</config>
